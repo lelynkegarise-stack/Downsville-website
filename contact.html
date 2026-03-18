@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+ </head>
+    <body>
         <div id="navbar"></div>
 <script>
 
@@ -14,5 +16,31 @@ fetch("navbar.html")
   });
 
 </script>
-        If have any further questions contact Brad Kegarise at 301-331-6478, Chasity Long at 301-331-0427, or fill out the form <a href="join.html">here</a>.    </head>
+        If have any further questions contact Brad Kegarise at 301-331-6478, or Chasity Long at 301-331-0427
+        <form action="https://formspree.io/f/mjgajrwb" method="post">
+
+  <!-- Name -->
+  <label for="firstName">First Name*</label>
+  <input type="text" id="firstName" name="firstName" required>
+
+  <label for="lastName">Last Name*</label>
+  <input type="text" id="lastName" name="lastName" required>
+
+  <!-- Email -->
+  <label for="email">Email*</label>
+  <input type="email" id="email" name="email" required>
+
+  <!-- Phone -->
+  <label for="phone">Phone</label>
+  <input type="tel" id="phone" name="phone" required>
+
+  <label for="reason">Reason for cantact*</label>
+  <input type="text" id="reason" name="reason" required>
+
+  <button type="submit">Submit</button>
+    <input type="hidden" name="_redirect" value="thankyou.html">
+
+</form>
+    </body>
+    
 </html>
