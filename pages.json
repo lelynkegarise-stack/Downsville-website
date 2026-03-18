@@ -1,0 +1,7 @@
+[
+  {"title": "Home", "url": "index.html", "content": "Welcome to our site! Learn about us here."},
+  {"title": "About us", "url": "about.html", "content": "About The Downsville Ruritan"},
+  {"title": "rentals", "url": "rentals.html", "content": "Rent our building!"},
+  {"title": "calendar", "url": "calendar.html", "content": "See our upcoming events"},
+  {"title": "Contact", "url": "contact.html", "content": "Get in touch with us."}
+]
