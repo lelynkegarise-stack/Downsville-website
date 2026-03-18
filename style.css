@@ -1,0 +1,94 @@
+
+    /* ===== Navigation Menu ===== */
+    body { margin: 0; font-family: Arial, sans-serif; }
+    nav {
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+    .menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+    .menu li { position: relative; }
+    .menu li a { display: block; color: blue; padding: 15px 20px; text-decoration: none; }
+    .menu li a:hover { background-color: #555; color: white; }
+
+    /* Dropdown */
+    .dropdown-content { display: none; position: absolute; background-color: #444; min-width: 160px; z-index: 1; top: 100%; }
+    .dropdown-content li a { padding: 12px 16px; color: white; }
+    .dropdown-content li a:hover { background-color: #666; }
+    .dropdown:hover .dropdown-content { display: block; }
+
+    /* ===== Search in nav ===== */
+    #navSearchContainer { display: flex; align-items: center; position: relative; }
+    #searchBox {
+        display: none;
+        padding: 8px;
+        font-size: 14px;
+        width: 180px;
+        margin-left: 5px;
+    }
+    #searchButton {
+        font-size: 18px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: blue;
+    }
+
+    /* ===== Search results dropdown ===== */
+    #results {
+        position: absolute;
+        top: 40px;
+        right: 0;
+        background: white;
+        border: 1px solid #ccc;
+        max-width: 250px;
+        z-index: 10;
+        padding: 10px;
+        display: none;
+    }
+    #results p { margin: 5px 0; }
+    #results a { text-decoration: none; color: blue; }
+    #results a:hover { text-decoration: underline; }
+    .highlight { background-color: yellow; font-weight: bold; }
+
+.month-table {
+  display: none;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid black; /* OUTER BORDER */
+  margin-bottom: 20px;
+}
+
+.month-table th {
+  border: 2px solid black;
+  background-color: #ddd;
+  padding: 10px;
+}
+
+.month-table td {
+  border: 2px solid black;
+  padding: 10px;
+}
+
+/* Dropdown button */
+.month-toggle {
+  width: 100%;
+  padding: 12px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.month-toggle:hover {
+  background-color: #555;
+}
