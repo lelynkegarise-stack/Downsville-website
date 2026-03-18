@@ -49,7 +49,8 @@ fetch("navbar.html")
         </p>
 <h1>Rent the Downsville Ruritan Club</h1>        
 <p>If you have any questions please contact 
-Brad Kegarise at 301-331-6478, or Chasity Long at 301-331-0427. 
+Brad Kegarise at 301-331-6478, or Chasity Long at 301-331-0427. <br>
+Reminder: Rentals will not be reserved until deposit is recieved.
 </p>
 <form action="https://formspree.io/f/mdawarkz" method="post">
 
@@ -79,22 +80,17 @@ Brad Kegarise at 301-331-6478, or Chasity Long at 301-331-0427.
   <input type="text" id="city" name="city" >
 
   <label for="state">State*</label>
-  <select id="state" name="state" >
-    <option value="">Select a state</option>
-    <option>Maryland</option>
-    <option>Virginia</option>
-    <option>West Virginia</option>
-     <option>Pennsylvania</option>
-    <!-- Add all states if you want -->
-  </select>
+  <input type="text" id="state" name="state" >
+
 
   <label for="zip">ZIP Code*</label>
   <input type="text" id="zip" name="zip" >
 
-  <label for="reason">Reason for contact*</label>
+  <label for="reason">Date you want to rent*</label>
   <input type="text" id="reason" name="reason" required>
 
   <button type="submit">Submit</button>
+    <input type="hidden" name="_redirect" value="thankyou.html">
 
 </form>
 
