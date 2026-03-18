@@ -75,24 +75,18 @@ fetch("navbar.html")
   <input type="text" id="city" name="city" >
 
   <label for="state">State*</label>
-  <select id="state" name="state" >
-    <option value="">Select a state</option>
-    <option>Maryland</option>
-    <option>Virginia</option>
-    <option>West Virginia</option>
-     <option>Pennsylvania</option>
-    <!-- Add all states if you want -->
-  </select>
+  <input type="text" id="state" name="state" >
+
 
   <label for="zip">ZIP Code*</label>
   <input type="text" id="zip" name="zip" >
 
-  <label for="reason">Reason for contact*</label>
+  <label for="reason">Date you want to rent*</label>
   <input type="text" id="reason" name="reason" required>
 
   <button type="submit">Submit</button>
+    <input type="hidden" name="_redirect" value="thankyou.html">
 
 </form>
-
 </body>
 </html>
