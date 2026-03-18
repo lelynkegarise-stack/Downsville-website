@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  width: 45%;
+  text-align: center;
+  height: 100%;
+}
+
+.right {
+  width: 45%;
+  text-align: center;
+}
+p{
+    text-align:center;
+}
+h4{
+    text-align:center;
+}
+h1{
+    text-align: center;
+}
+
+</style>
+</head>
+
+<body>
+<div id="navbar"></div>
+<script>
+
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+      const script = document.createElement("script");
+    script.src = "search.js";
+    document.body.appendChild(script);
+  });
+
+</script>
+<h1>Williamsport Carnival<br><br>
+<img src="carnival.png" alt="carnival" width="500">
+</h1>
+
+<div class="container">
+
+<div class="left">
+  <br><br><br><br><br><br><br>
+<h3>Dates & Times</h3>
+Dates: 6/17/26 - 6/20/26<br>
+Wednesday 6/17<br>
+Thursday 6/18<br>
+Friday 6/19<br>
+Saturday 6/20
+
+</div>
+
+<div class="right">
+<h3>Location</h3>
+
+Byron Memorial Park<br>
+11 Park Rd<br>
+Williamsport, MD 21795<br><br>
+
+<iframe
+src="https://www.google.com/maps?q=39.5993902,-77.8159998&output=embed"
+width="100%" height="250" style="border:0;">
+</iframe>
+
+</div>
+
+</div>
+<h4>Description</h4>
+
+<p>
+Williamsport Carnival sponsored by the Downsville Ruritan.<br>
+Downsville Ruritan sponsors the carnival and runs the food and tip jars.<br>
+To preorder tickets contact Brad Kegarise at 301-331-6478<br>
+For more information visit our 
+<a href="https://www.facebook.com/events/2199822897164882">Facebook</a>.
+</p>
+</body>
+</html>

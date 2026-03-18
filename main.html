@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel ="members" href ="members.css">
+        <title>  Welcome to the Downsville Ruritan Club!   </title>
+        <title> Downsville Ruritan Club</title>
+    </head>
+    <body>
+        <div id="navbar"></div>
+<script>
+
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+      const script = document.createElement("script");
+    script.src = "search.js";
+    document.body.appendChild(script);
+  });
+
+</script>
+        <table> 
+        <tr>
+            <th><a href="main.html">Home</a></th>
+            <th><a href="aboutus.html">About us</a></th>
+            <th><a href="members.html">Members</a></th>
+            <th><a href="contact.html">Contact</a></th>         
+            <th><a href="rentals.html">rentals</a></th>
+        </tr>
+    </table>
+
+<div>
+    <h1> Welcome to the Downsville Ruritan Club!</h1>
+    <p>Serving Downsville Maryland and the surronding area since 1954
+    Ruritans purpose is to create a better understanding among people  
+    and making Americas communities bettwe through volunteer comunity service
+    Ruritans slogan is "fellowship, goodwill and community service." Our members,
+    along with members around the country represent their commnuity in which the club serves.
+    People of all occupations, social postions, and backgrounds are encouraged to join the Ruritan </p>
+</div>
+<table>
+    <tr>
+        <th>
+            <h2>Downsville Ruritan Club</h2>
+            Our community building is located at:
+            8629 Downsville Pike Williamsport Maryland 21795
+        </th>
+        <th>
+            <img src="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=/maps/place/8629%2BDownsville%2BPike,%2BWilliamsport,%2BMD%2B21795/data%3D!4m2!3m1!1s0x89c9f104e3fba97f:0x1760e52c7485a60a%3Fsa%3DX%26ved%3D1t:242%26ictx%3D111&ved=2ahUKEwiegNu71ZOTAxU5LFkFHVcGOCsQ8gF6BAgaEAI&usg=AOvVaw0WKZSuBQBZVstFjhb59KC8">
+        </th>
+    </tr>
+</table>
+</body>
+    <style>
+        table {
+    width:100%;
+    height :100%;
+    background-color: white; 
+}
+div{
+    background-color: blue;
+    position: absolute;
+    color: white;
+    font-size: 50px; 
+    text-align: center;
+    display: flex;
+    justify-content: center;
+     flex-direction: column;
+    height: 50vh;
+
+}
+
+
+
+    </style>
+</html>

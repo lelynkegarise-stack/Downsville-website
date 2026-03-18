@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <div id="navbar"></div>
+<script>
+
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+      const script = document.createElement("script");
+    script.src = "search.js";
+    document.body.appendChild(script);
+  });
+
+</script>
+        If have any further questions contact Brad Kegarise at 301-331-6478, Chasity Long at 301-331-0427, or fill out the form <a href="join.html">here</a>.    </head>
+</html>

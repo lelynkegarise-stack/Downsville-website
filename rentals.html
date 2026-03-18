@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <body>
+<div id="navbar"></div>
+<script>
+
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+      const script = document.createElement("script");
+    script.src = "search.js";
+    document.body.appendChild(script);
+  });
+
+</script>
+        <h2>
+            Rentals
+        </h2>
+        <p>If you are interested in renting the building please contact 
+        Brad Kegarise at 301-331-6478, Chasity Long at 301-331-0427, or fill out the form <a href="join.html">here</a>. 
+        </p>
+        <h3>
+            Rental agreement 
+        </h3>
+        <p>
+        Building includes big room, bathrooms and kitchen: $275 with a $50 refundable security deposit upon inspection of the building.<br>
+        Small room includes the room and bathrooms: $175 with a $50 refundable security deposit upon inspection of the building.<br>
+        Park includes pavilion, bathrooms, and ball feild: $50 <br>
+        </p>
+        <h4>
+            Rentals will not be reserved until deposit is recieved.<br><br>
+            To recieve a refund,cancellation must be made 2 weeks prior to reservation date<br><br>
+            Regulations:
+        </h4>
+        <p>
+            1. No alcholoic beverages on property,<br>
+            2.No tape, nails, or tacks on any wals, ceilings, windows, floors, etc.<br>
+            3. Rental time is from 9:00 am until 10:30 pm. Failure to leave by 10:30 pm will result in a forfeiture of secutiry deposit.<br>
+            4.There must always be adult supervision<br>
+            5. Premises are monitored by survillance cameras.<br>
+        </p>
+        <h5>
+            Clean up:
+            A mop and broom are avalible in closet for your use
+        </h5>
+        <p>
+            1. All spills must be cleaned up <br>
+            2. Tables and chairs must be wiped clean and put back the way you found them<br>
+            3. All kitchen equipment must be cleaned and turned off. secure refridgerator door and remove all your items.<br>
+            4. All trash must be placed in the dumpster and dumpster area must be clean. 
+        </p>
+
+    </body>
+</html>
