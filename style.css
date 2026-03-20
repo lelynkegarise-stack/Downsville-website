@@ -57,8 +57,8 @@ nav {
 .dropdown-content li a {
   padding: 12px 16px;
   color: white;
-  /*display: block;
-  text-decoration: none;*/
+  display: block;
+  text-decoration: none;
 }
 
 .dropdown-content li a:hover {
@@ -67,7 +67,7 @@ nav {
 
 .dropdown:hover .dropdown-content {
   display: block;
-    position: absolute;
+position: absolute;
 
 }
 .hamburger {
