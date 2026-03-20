@@ -212,11 +212,11 @@ button {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* 🔹 change from center */
     align-items: center;
 
     min-height: 80vh;
-    padding: 20px;
+    padding: 40px 20px; /* 🔹 more padding */
 }
 
 .intro h1 {
@@ -225,6 +225,7 @@ button {
 
 .intro p {
     max-width: 800px;
+    margin-top: 20px; /* 🔹 add spacing below the heading/logo */
 }
 .logo1 {
     max-width: 200px;
