@@ -85,5 +85,13 @@ To preorder tickets contact Brad Kegarise at 301-331-6478<br>
 For more information visit our 
 <a href="https://www.facebook.com/events/2199822897164882">Facebook</a>.
 </p>
+  <div id="footer"></div>
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
 </body>
 </html>
