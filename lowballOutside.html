@@ -24,7 +24,8 @@ fetch("navbar.html")
 
 Date: 6/20/26<br>
 Time: 
-
+<br>
+Description
 </div>
 
 <div class="right">
@@ -39,5 +40,13 @@ Williamsport, MD 21795<br><br>
 src="https://www.google.com/maps?q=39.5993902,-77.8159998&output=embed"
 width="100%" height="250" style="border:0;">
 </iframe>
+        <div id="footer"></div>
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
     </body>
 </html>
