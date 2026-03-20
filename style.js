@@ -1,27 +1,26 @@
-// ===== NAVBAR + HAMBURGER + SEARCH =====
 fetch("navbar.html")
   .then(response => response.text())
   .then(data => {
     document.getElementById("navbar").innerHTML = data;
 
-    // --- Hamburger toggle for mobile ---
+    // Hamburger toggle
     const hamburger = document.getElementById("hamburger");
     const menu = document.getElementById("menu");
-
     if (hamburger && menu) {
       hamburger.addEventListener("click", () => {
-        if (menu.style.display === "flex") {
-          menu.style.display = "none";
-        } else {
-          menu.style.display = "flex";
-        }
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
       });
     }
 
-    // --- Load search script ---
-    const script = document.createElement("script");
-    script.src = "search.js";
-    document.body.appendChild(script);
+    // Search toggle
+    const searchButton = document.getElementById("searchButton");
+    const searchBox = document.getElementById("searchBox");
+    if (searchButton && searchBox) {
+      searchButton.addEventListener("click", () => {
+        searchBox.style.display = searchBox.style.display === "inline-block" ? "none" : "inline-block";
+        searchBox.focus();
+      });
+    }
   });
 
 // ===== MONTH TABLE DROPDOWN =====
@@ -33,13 +32,8 @@ document.querySelectorAll(".month-toggle").forEach(button => {
 });
 
 // ===== REMOVE PAST EVENTS =====
-/*const now = new Date();
-
+const now = new Date();
 document.querySelectorAll("tr[data-date]").forEach(row => {
   const eventDate = new Date(row.dataset.date);
-  if (eventDate < now) {
-    row.remove();
-  }
-});*/
-
-
+  if (eventDate < now) row.remove();
+});
