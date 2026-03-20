@@ -57,8 +57,8 @@ nav {
 .dropdown-content li a {
   padding: 12px 16px;
   color: white;
-  display: block;
-  text-decoration: none;
+  /*display: block;
+  text-decoration: none;*/
 }
 
 .dropdown-content li a:hover {
@@ -70,7 +70,13 @@ nav {
     position: absolute;
 
 }
-
+.hamburger {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 /* Search */
 #searchBox {
   display: none; /* hidden by default */
@@ -84,15 +90,6 @@ nav {
   background: none;
   border: none;
   font-size: 18px;
-}
-
-/* Hamburger */
-.hamburger {
-  display: none;
-  font-size: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
 }
 
 /* ===== MOBILE ===== */
