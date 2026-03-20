@@ -28,7 +28,7 @@ align-items: center;
 gap: 10px;
 }
 .logo img {
-  max-width: 15px; /* or whatever fits your navbar */
+  max-width: 30px; /* or whatever fits your navbar */
   width: 100%;
   height: auto;
   display: block;
