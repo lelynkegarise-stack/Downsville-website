@@ -11,6 +11,16 @@ fetch("navbar.html")
         menu.style.display = menu.style.display === "flex" ? "none" : "flex";
       });
     }
+      // Mobile dropdown toggle
+document.querySelectorAll('.dropdown > a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    if (window.innerWidth <= 600) { // only for mobile
+      e.preventDefault(); // prevent navigation
+      const dropdown = link.nextElementSibling;
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+  });
+});
 
     // Search toggle
     const searchButton = document.getElementById("searchButton");
