@@ -226,6 +226,12 @@ button {
 .intro p {
     max-width: 800px;
 }
+.logo1 {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
 
 /* ===== LOCATION (REPLACED TABLE) ===== */
 .location {
