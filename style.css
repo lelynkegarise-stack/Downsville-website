@@ -16,29 +16,26 @@ h1 {
 /* ===== NAVIGATION ===== */
 /* ===== NAVIGATION ===== */
 nav {
-  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  background-color: white;
+  flex-wrap: wrap; /* important for mobile */
 }
-.nav-right {
-display: flex;
-align-items: center;
-gap: 10px;
-}
+
 .logo img {
-  max-width: 30px; /* or whatever fits your navbar */
-  width: 100%;
-  height: auto;
-  display: block;
+  max-height: 50px;
+  width: auto;
 }
+
 .menu {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   gap: 10px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
 .menu li a {
@@ -62,10 +59,25 @@ gap: 10px;
   display: block;
 }
 
-/* Hamburger button */
+/* Search */
+#searchBox {
+  display: none; /* hidden by default */
+  padding: 5px;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+#searchButton {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 18px;
+}
+
+/* Hamburger */
 .hamburger {
   display: none;
-  font-size: 24px;
+  font-size: 28px;
   background: none;
   border: none;
   cursor: pointer;
@@ -74,10 +86,9 @@ gap: 10px;
 /* ===== MOBILE ===== */
 @media (max-width: 600px) {
   .menu {
-    display: none; /* hide menu initially */
+    display: none; /* hidden until hamburger clicked */
     flex-direction: column;
     width: 100%;
-    background-color: white;
   }
 
   .menu li a {
@@ -86,13 +97,19 @@ gap: 10px;
   }
 
   .hamburger {
-    display: block; /* show hamburger on mobile */
+    display: block;
   }
 
   .dropdown:hover .dropdown-content {
-    position: static; /* make dropdown vertical on mobile */
+    position: static; /* vertical on mobile */
+  }
+
+  #navSearchContainer {
+    display: flex;
+    align-items: center;
   }
 }
+
 
 /* ===== EVENTS ===== */
 .container {
