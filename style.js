@@ -14,13 +14,24 @@ fetch("navbar.html")
       // Mobile dropdown toggle
 document.querySelectorAll('.dropdown > a').forEach(link => {
   link.addEventListener('click', (e) => {
-    if (window.innerWidth <= 600) { // only for mobile
-      e.preventDefault(); // prevent navigation
-      const dropdown = link.nextElementSibling;
-      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    if (window.innerWidth <= 600) {
+      const parent = link.parentElement;
+      const menu = parent.querySelector('.dropdown-menu');
+
+      if (!parent.classList.contains('open')) {
+        e.preventDefault(); // stop navigation FIRST tap
+
+        // close other dropdowns
+        document.querySelectorAll('.dropdown').forEach(d => {
+          d.classList.remove('open');
+        });
+
+        parent.classList.add('open');
+      }
     }
   });
 });
+
 
     // Search toggle
     const searchButton = document.getElementById("searchButton");
