@@ -78,5 +78,13 @@ width="100%" height="250" style="border:0;">
 For more information visit Floyd Davis 
 <a href="https://www.facebook.com/cfloyddavis">Facebook</a>.
 </p>
+  <div id="footer"></div>
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
 </body>
 </html>
