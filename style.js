@@ -6,31 +6,35 @@ fetch("navbar.html")
     // Hamburger toggle
     const hamburger = document.getElementById("hamburger");
     const menu = document.getElementById("menu");
+
     if (hamburger && menu) {
       hamburger.addEventListener("click", () => {
         menu.style.display = menu.style.display === "flex" ? "none" : "flex";
       });
     }
-      // Mobile dropdown toggle
-document.querySelectorAll('.dropdown > a').forEach(link => {
-  link.addEventListener('click', (e) => {
-    if (window.innerWidth <= 600) {
-      const parent = link.parentElement;
-      const menu = parent.querySelector('.dropdown-menu');
 
-      if (!parent.classList.contains('open')) {
-        e.preventDefault(); // stop navigation FIRST tap
+    // Mobile dropdown toggle
+    document.querySelectorAll('.dropdown > a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (window.innerWidth <= 600) {
+          const parent = link.parentElement;
 
-        // close other dropdowns
-        document.querySelectorAll('.dropdown').forEach(d => {
-          d.classList.remove('open');
-        });
+          if (!parent.classList.contains('open')) {
+            e.preventDefault();
 
-        parent.classList.add('open');
-      }
-    }
-  });
-});
+            // close other dropdowns
+            document.querySelectorAll('.dropdown').forEach(d => {
+              d.classList.remove('open');
+            });
+
+            parent.classList.add('open');
+          }
+        }
+      });
+    });
+
+  }) 
+  .catch(error => console.error("Navbar load error:", error));
 
 
     // Search toggle
