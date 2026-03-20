@@ -83,6 +83,14 @@ If you are interested in being a vendor contact Chasity Long at 301-334-0427<br>
 For more information visit our 
 <a href="https://www.facebook.com/events/2407620989713757/">Facebook</a>.
 </p>
+  <div id="footer"></div>
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
 </body>
 </html>
 
