@@ -22,6 +22,11 @@ nav {
   align-items: center;
   padding: 0 20px;
 }
+.nav-right {
+display: flex;
+align-items: center;
+gap: 10px;
+}
 .logo img {
   max-width: 200px; /* or whatever fits your navbar */
   width: 100%;
