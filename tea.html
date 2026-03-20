@@ -54,12 +54,13 @@ fetch("navbar.html")
 <div class="left">
   <br><br><br><br><br><br><br>
 <h3>Dates & Times</h3>
-Dates: 6/17/26 - 6/20/26<br>
-Wednesday 6/17<br>
-Thursday 6/18<br>
-Friday 6/19<br>
-Saturday 6/20
+Saturday May 2, 2026
+<h4>Description</h4>
 
+<p>
+
+<a href="https://www.facebook.com/events/2199822897164882">Facebook</a>.
+</p>
 </div>
 
 <div class="right">
@@ -77,11 +78,14 @@ width="100%" height="250" style="border:0;">
 </div>
 
 </div>
-<h4>Description</h4>
 
-<p>
-
-<a href="https://www.facebook.com/events/2199822897164882">Facebook</a>.
-</p>
+            <div id="footer"></div>
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
 </body>
 </html>
