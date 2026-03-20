@@ -54,7 +54,13 @@ fetch("navbar.html")
 <div class="left">
   <br><br><br><br><br><br><br>
 <h3>Dates & Times</h3>
-
+<br>
+<h4> Description</h4>
+Come out and decorate a gingerbread house for free.<br>
+Visits from Santa, Mrs.Claus, the Grinch, and other characters.<br>
+Enjoy decorations with a new theme each year based on a christmas movie.<br
+For more information visit our 
+<a href="https://www.facebook.com/events/25691145210546495">Facebook</a>.
 </div>
 
 <div class="right">
@@ -72,14 +78,13 @@ width="100%" height="250" style="border:0;">
 </div>
 
 </div>
-<h4>Description</h4>
-
-<p>
-Come out and decorate a gingerbread house for free.<br>
-Visits from Santa, Mrs.Claus, the Grinch, and other characters.<br>
-Enjoy decorations with a new theme each year based on a christmas movie.<br
-For more information visit our 
-<a href="https://www.facebook.com/events/25691145210546495">Facebook</a>.
-</p>
+  <div id="footer"></div>
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
 </body>
 </html>
