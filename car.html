@@ -88,6 +88,14 @@ Alcohol and pets prohibited<br>
    
 <a href="https://www.facebook.com/events/1222960242645529/">Facebook</a>.
 </p>
+  <div id="footer"></div>
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
 </body>
 </html>
 
