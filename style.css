@@ -117,6 +117,10 @@ nav {
     display: flex;
     align-items: center;
   }
+    .dropdown-content{
+        display: none;
+        postition: static;
+    }
 }
 
 
