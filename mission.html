@@ -66,11 +66,13 @@ fetch("navbar.html")
             <li> 3 year board member: Dean Baker</li>
             <li> Past President: Pat Shank </li>
         </ul>
-        <h3>
-
-        </h3>
-        <p>
-
-        </p>
+                <div id="footer"></div>
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
     </body>
 </html>
