@@ -1,54 +1,28 @@
+<!-- Place this anywhere in your HTML (ideally near the bottom) -->
+<a href="https://www.facebook.com/DownsvilleRuritan" target="_blank" class="fb-float">
+  <i class="fa-brands fa-facebook"></i>
+</a>
+
 <style>
-.footer {
-  background: #111;
-  color: #ccc;
-  text-align: center;
-  padding: 20px 10px;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.footer a {
-  color: #ccc;
-  text-decoration: none;
-  margin: 0 5px;
-}
-
-.footer a:hover {
+/* Floating Facebook button */
+.fb-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1877f2; /* Facebook blue */
   color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: background 0.3s;
 }
 
-/* Facebook icon */
-.footer .social a {
-  font-size: 18px;
-}
-
-.footer .social a i {
-  color: #ccc; /* icon always visible */
-}
-
-.footer .social a:hover i {
-  color: #1877f2; /* Facebook blue on hover */
+.fb-float:hover {
+  background: #145dbf; /* Darker on hover */
 }
 </style>
-
-<footer class="footer">
-  <p>
-    Copyright © 2026 | Downsville Ruritan Club | All Rights Reserved.
-  </p>
-
-  <p>
-    8629 Downsville Pike | Williamsport, Maryland 21795 |
-    <a href="contact.html">Contact</a>
-  </p>
-
-  <div class="social">
-    <a href="https://www.facebook.com/DownsvilleRuritan" target="_blank">
-      <i class="fa-brands fa-facebook"></i>
-    </a>
-  </div>
-
-  <p>
-    Site designed and hosted by: Your Name
-  </p>
-</footer>
