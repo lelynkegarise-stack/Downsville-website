@@ -55,7 +55,16 @@ fetch("navbar.html")
   <br><br><br><br><br><br><br>
 <h3>Dates & Times</h3>
 
+  <br>
+<h4>Description</h4>
 
+<p>
+Come out and enjoy community lowball tournament.<br>
+gambling, free food, and great commpany.<br>
+If you have nay questions reach out to Brad Kegarise at 301-331-6478.<br>
+For more information visit our 
+<a href="https://www.facebook.com/events/805523558970947/">Facebook</a>.
+</p>
 </div>
 
 <div class="right">
@@ -73,14 +82,13 @@ width="100%" height="250" style="border:0;">
 </div>
 
 </div>
-<h4>Description</h4>
-
-<p>
-Come out and enjoy community lowball tournament.<br>
-gambling, free food, and great commpany.<br>
-If you have nay questions reach out to Brad Kegarise at 301-331-6478.<br>
-For more information visit our 
-<a href="https://www.facebook.com/events/805523558970947/">Facebook</a>.
-</p>
+    <div id="footer"></div>
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
 </body>
 </html>
