@@ -2,6 +2,16 @@ fetch("navbar.html")
   .then(response => response.text())
   .then(data => {
     document.getElementById("navbar").innerHTML = data;
+// Mobile dropdown toggle
+document.querySelectorAll('.dropbtn').forEach(button => {
+  button.addEventListener('click', (e) => {
+    if(window.innerWidth <= 600) {
+      e.preventDefault(); // stop link navigation
+      const dropdown = button.nextElementSibling;
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+  });
+});
 
     // --- Hamburger toggle ---
     const hamburger = document.getElementById("hamburger");
