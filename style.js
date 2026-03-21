@@ -25,16 +25,19 @@ fetch("./navbar.html")
       });
     });
 
-    // 3. Search Toggle
-    if (searchButton && searchBox) {
-      searchButton.addEventListener("click", () => {
-        const isHidden = searchBox.style.display === "none";
-        searchBox.style.display = isHidden ? "inline-block" : "none";
-        if (isHidden) searchBox.focus();
-      });
+// 3. Search Toggle Fix
+if (searchButton && searchBox) {
+  searchButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    // Toggle between none and inline-block
+    if (searchBox.style.display === "none" || searchBox.style.display === "") {
+      searchBox.style.display = "inline-block";
+      searchBox.focus();
+    } else {
+      searchBox.style.display = "none";
     }
-  })
-  .catch(err => console.error("Nav load error:", err));
+  });
+}
 
 // Calendar logic
 document.addEventListener("click", (e) => {
