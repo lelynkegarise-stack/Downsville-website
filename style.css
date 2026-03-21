@@ -1,4 +1,7 @@
-/* ===== GLOBAL & NAV WRAPPER ===== */
+/* GLOBAL RESET */
+body, html { margin: 0; padding: 0; font-family: Arial, sans-serif; width: 100%; overflow-x: hidden; }
+
+/* THE NAV BAR CONTAINER */
 nav {
     display: flex;
     justify-content: space-between;
@@ -14,17 +17,12 @@ nav {
 
 .logo img { height: 45px !important; width: auto !important; }
 
-/* Desktop Bar (Hidden on Mobile) */
-.menu {
-    display: flex;
-    list-style: none !important;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-}
+/* DESKTOP MENU (Horizontal) */
+.menu { display: flex; list-style: none; gap: 20px; margin: 0; padding: 0; }
+.menu li a { text-decoration: none; color: #333; font-weight: bold; }
 
 .hamburger {
-    display: none; /* Hidden on big screens */
+    display: none; /* Hidden on computers */
     font-size: 30px;
     background: none;
     border: none;
@@ -32,15 +30,15 @@ nav {
     cursor: pointer;
 }
 
-/* ===== MOBILE OVERRIDES (950px and down) ===== */
+/* MOBILE VIEW (The "Three Lines" Logic) */
 @media screen and (max-width: 950px) {
     .hamburger { display: block !important; }
 
     .menu {
-        display: none !important; /* Start hidden */
+        display: none !important; /* Hide by default */
         flex-direction: column;
-        position: absolute;
-        top: 70px; /* Right below the white bar */
+        position: absolute; /* FLOATS OVER THE BLUE */
+        top: 70px;
         left: 0;
         width: 100%;
         background-color: white;
@@ -48,20 +46,19 @@ nav {
         box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     }
 
-    /* THIS IS WHAT THE BUTTON TRIGGERS */
-    .menu.active { 
-        display: flex !important; 
-    }
+    /* Triggered by JavaScript */
+    .menu.active { display: flex !important; }
 
     .menu li { width: 100%; border-bottom: 1px solid #eee; }
-    .menu li a { display: block; padding: 15px 25px; text-decoration: none; color: #333; }
+    .menu li a { display: block; padding: 15px 25px; }
 }
 
-/* ===== INTRO SECTION ===== */
+/* THE BLUE INTRO SECTION */
 .intro {
-    background-color: blue;
+    background: linear-gradient(blue, darkblue);
     color: white;
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px;
     min-height: 40vh;
 }
+.logo1 { width: 150px !important; height: auto !important; margin-bottom: 20px; }
