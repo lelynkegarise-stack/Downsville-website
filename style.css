@@ -242,9 +242,11 @@ button {
     margin-top: 20px; /* 🔹 add spacing below the heading/logo */
 }
 .logo1 {
-   max-width: 100%;
+    width: 150px; /* Or whatever size looks good to you */
+    max-width: 100%;
     height: auto;
-    display:block
+    display: block;
+    margin: 0 auto; /* Keeps it centered in the flex column */
 }
 
 /* ===== LOCATION (REPLACED TABLE) ===== */
