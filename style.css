@@ -221,32 +221,24 @@ button {
 .intro {
     background-color: blue;
     color: white;
-    font-size: clamp(18px, 4vw, 30px);
+    font-size: clamp(16px, 3vw, 24px); /* Slightly smaller scale */
     text-align: center;
-
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* 🔹 change from center */
     align-items: center;
-
-    min-height: 80vh;
-    padding: 40px 20px; /* 🔹 more padding */
+    min-height: auto; /* Let the content breathe on landscape */
+    padding: 60px 20px; 
 }
 
-.intro h1 {
-    margin: 0 0 20px 0;
+.logo1 {
+    width: 120px; /* Limits the size so it doesn't 'get huge' */
+    height: auto;
+    margin-bottom: 20px;
 }
 
 .intro p {
-    max-width: 800px;
-    margin-top: 20px; /* 🔹 add spacing below the heading/logo */
-}
-.logo1 {
-    width: 150px; /* Or whatever size looks good to you */
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto; /* Keeps it centered in the flex column */
+    max-width: 90%; /* Ensures text doesn't hit the very edges */
+    line-height: 1.6;
 }
 
 /* ===== LOCATION (REPLACED TABLE) ===== */
