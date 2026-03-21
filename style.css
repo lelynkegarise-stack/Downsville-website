@@ -9,8 +9,49 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    overflow-x: hidden; /* Stops horizontal scrolling */
+    overflow-x: hidden;
     width: 100%;
+}
+
+/* ===== NAVIGATION (NEW FIXES ADDED HERE) ===== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Fixes the logo in the top corner from getting huge */
+.logo img, #navbar img {
+    height: 50px !important; 
+    width: auto !important;
+}
+
+/* Removes those purple dots/bullets */
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+}
+
+/* Hide hamburger on desktop */
+.hamburger {
+    display: none;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 /* ===== INTRO SECTION ===== */
@@ -22,20 +63,22 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 60vh; /* Shorter than 80vh to fit screens better */
+    min-height: 60vh;
     padding: 40px 20px;
     box-sizing: border-box;
 }
 
 .intro h1 {
     margin: 0 0 20px 0;
-    font-size: clamp(22px, 5vw, 36px); /* Responsive title */
+    font-size: clamp(22px, 5vw, 36px);
     width: 100%;
     max-width: 800px;
 }
+
 .logo1 {
-    width: 150px !important; /* The !important makes it override everything else */
+    width: 150px !important;
     height: auto !important;
+    margin-top: 20px;
 }
 
 .intro p {
@@ -48,22 +91,47 @@ body {
 /* ===== LOCATION SECTION ===== */
 .location {
     display: flex;
-    flex-wrap: wrap; /* Allows stacking on mobile */
+    flex-wrap: wrap;
     gap: 20px;
     padding: 40px 20px;
 }
 
 .text, .map {
     flex: 1;
-    min-width: 300px; /* Forces wrap when space is tight */
+    min-width: 300px;
 }
 
 /* ===== 📱 RESPONSIVE & LANDSCAPE FIXES ===== */
 
-/* This target captures BOTH vertical phones and horizontal phones */
 @media screen and (max-width: 950px) {
+    /* Styles for the Mobile Menu */
+    .hamburger {
+        display: block;
+    }
+
+    .menu {
+        display: none; /* Hide until 'active' class is added via JS */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        padding: 20px 0;
+        border-bottom: 2px solid blue;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu li {
+        text-align: center;
+        padding: 10px 0;
+    }
+
     .intro {
-        min-height: auto; /* Content dictates height, not the screen */
+        min-height: auto;
         padding: 60px 20px;
     }
     
@@ -79,10 +147,10 @@ body {
         padding: 30px 10px;
     }
     .intro h1 {
-        font-size: 20px; /* Shrinks title so it fits on one screen */
+        font-size: 20px;
     }
     .logo1 {
-        width: 80px; /* Shrinks logo so you don't have to scroll forever */
+        width: 80px !important;
     }
     .intro p {
         font-size: 15px;
