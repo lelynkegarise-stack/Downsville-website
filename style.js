@@ -38,16 +38,15 @@ fetch("./navbar.html")
     const searchButton = document.getElementById("searchButton");
     const searchBox = document.getElementById("searchBox");
 
-    if (searchButton && searchBox) {
+  if (searchButton && searchBox) {
       searchButton.addEventListener("click", () => {
-        if (searchBox.style.display === "inline-block") {
-          searchBox.style.display = "none";
-        } else {
-          searchBox.style.display = "inline-block";
-          searchBox.focus();
-        }
-      });
-    }
+        searchBox.style.display =
+          searchBox.style.display === "inline-block"
+            ? "none"
+            : "inline-block";
+        searchBox.focus();
+      }};
+  }
   })
   .catch(error => console.error("Navbar load error:", error));
 
