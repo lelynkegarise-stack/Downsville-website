@@ -242,8 +242,8 @@ button {
     margin-top: 20px; /* 🔹 add spacing below the heading/logo */
 }
 .logo1 {
-   max-height: 50px;
-    width: auto;
+   max-width: 100%;
+    height: auto;
     display:block
 }
 
