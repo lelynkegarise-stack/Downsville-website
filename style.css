@@ -1,75 +1,176 @@
-/* ===== PRETTY DROPDOWN ===== */
-
-/* The container for "About Us" */
-.dropdown {
-    position: relative;
-    display: inline-block;
+/* ===== 2. THE PRETTY NAVIGATION BAR ===== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px; /* More breathing room */
+    background-color: #ffffff;
+    position: sticky; /* Stays at the top when you scroll! */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Subtle "lift" from the page */
 }
 
-/* The actual box that pops out */
+/* Logo size fix */
+.logo img {
+    height: 48px !important;
+    width: auto !important;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05); /* Slight grow when you hover the logo */
+}
+
+/* THE MENU CONTAINER */
+.menu {
+    list-style: none !important;
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+/* MAIN LINKS (Home, About, etc.) */
+.menu li a {
+    text-decoration: none;
+    color: #333; /* Darker gray for a modern look */
+    font-size: 15px;
+    font-weight: 600; /* Medium-bold for clarity */
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.menu li a:hover {
+    color: blue;
+    background-color: #f0f4ff; /* Soft blue highlight on hover */
+}
+
+/* THE HAMBURGER BUTTON */
+.hamburger {
+    display: none;
+    font-size: 26px;
+    background: #f8f9fa; /* Light grey circle background */
+    border: none;
+    cursor: pointer;
+    color: blue;
+    padding: 8px 12px;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.hamburger:hover {
+    background-color: #e9ecef;
+}
+
+/* THE PRETTY DROPDOWN (About Us) */
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 100%; /* Sits exactly below the Nav link */
+    top: 100%;
     left: 0;
     background-color: #ffffff;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
-    border-radius: 4px; /* Rounded corners */
-    border-top: 3px solid blue; /* Matches your theme color */
-    z-index: 1000;
-    padding: 10px 0;
-    list-style: none !important;
+    min-width: 190px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    border-top: 3px solid blue;
+    padding: 8px 0;
+    overflow: hidden; /* Clips the corners for the radius */
 }
 
-/* Individual links inside the dropdown (History, Mission, Join) */
 .dropdown-content li a {
-    color: #333 !important; /* Dark text for readability */
-    padding: 12px 20px;
-    text-decoration: none;
-    display: block;
-    font-size: 15px;
-    font-weight: normal;
-    transition: background 0.3s ease, color 0.3s ease;
+    padding: 12px 20px !important;
+    font-size: 14px;
+    font-weight: 400;
+    color: #444 !important;
+    border-radius: 0; /* Reset radius inside the list */
 }
 
-/* Hover effect for the links inside the box */
 .dropdown-content li a:hover {
     background-color: #f1f1f1;
-    color: blue !important; /* Turns blue when you hover over it */
+    padding-left: 25px !important; /* Tiny "slide" effect on hover */
 }
 
-/* Show the dropdown when hovering (Desktop only) */
-@media (min-width: 951px) {
-    .dropdown:hover .dropdown-content {
-        display: block;
-        animation: fadeIn 0.3s ease; /* Smooth fade-in effect */
+/* SEARCH BUTTON & INPUT */
+#navSearchContainer {
+    display: flex;
+    align-items: center;
+    background: #f1f3f4; /* Light search pill background */
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+#searchButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#searchBox {
+    border: none;
+    background: transparent;
+    padding: 5px;
+    outline: none;
+    width: 0; /* Hidden initially */
+    transition: width 0.4s ease;
+}
+
+#searchBox:focus {
+    width: 130px; /* Expands smoothly when clicked */
+}
+
+/* ===== MOBILE BEAUTIFICATION ===== */
+@media screen and (max-width: 950px) {
+    nav {
+        padding: 10px 20px;
     }
-}
 
-/* Simple fade-in animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== MOBILE DROPDOWN ADJUSTMENTS ===== */
-@media (max-width: 950px) {
-    .dropdown-content {
-        position: static; /* Stacks vertically on phones */
+    .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
         width: 100%;
-        box-shadow: none;
-        border-top: none;
-        background-color: #f9f9f9; /* Slightly off-white for contrast */
-        padding: 0;
+        background-color: white;
+        padding: 15px 0;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.05);
     }
-    
-    .dropdown.open .dropdown-content {
-        display: block !important;
+
+    .menu.active {
+        display: flex !important;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    .menu li {
+        width: 100%;
+        text-align: left;
+    }
+
+    .menu li a {
+        padding: 15px 30px;
+        border-radius: 0;
+        border-bottom: 1px solid #f8f9fa;
+    }
+
+    /* Indent the About Us sub-links on mobile */
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background-color: #fcfcfc;
+        border-top: none;
     }
 
     .dropdown-content li a {
-        padding-left: 40px; /* Indents the links so they look like sub-items */
-        border-bottom: 1px solid #eee;
+        padding-left: 50px !important;
     }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
