@@ -1,10 +1,5 @@
-/* ===== 1. CORE FIXES & GLOBAL ===== */
-html {
-    -webkit-text-size-adjust: none !important;
-    text-size-adjust: none !important;
-}
-
-body {
+/* ===== 1. CORE FIXES ===== */
+body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -12,7 +7,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== 2. THE WORKING NAV BAR ===== */
+/* ===== 2. NAVIGATION BAR ===== */
 nav {
     display: flex;
     justify-content: space-between;
@@ -20,39 +15,68 @@ nav {
     padding: 10px 5%;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: 70px;
 }
 
 .logo img {
-    height: 50px !important; /* Keeps the logo small */
+    height: 50px !important;
     width: auto !important;
 }
 
 .menu {
     display: flex;
-    list-style: none !important;
-    gap: 20px;
+    list-style-type: none !important; /* Removes the dots */
     margin: 0;
     padding: 0;
+    gap: 20px;
+}
+
+.menu li {
+    list-style-type: none !important; /* Double-check dots are gone */
 }
 
 .menu li a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
-    padding: 5px 10px;
 }
 
-/* Hide the hamburger since we're going back to the bar */
-.hamburger {
-    display: none !important;
+/* ===== 3. THE DROPDOWN ===== */
+.dropdown {
+    position: relative;
 }
 
-/* ===== 3. THE BLUE INTRO SECTION ===== */
+.dropdown-content {
+    display: none; /* Keeps it hidden so it doesn't push the blue box */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    padding: 10px 0;
+    margin: 0;
+    list-style: none !important;
+    z-index: 999;
+}
+
+/* Show the dropdown only on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content li a {
+    padding: 10px 20px;
+    font-weight: normal;
+    display: block;
+}
+
+/* ===== 4. BLUE INTRO SECTION ===== */
 .intro {
-    background-color: #0000ff; /* Solid Blue */
+    background-color: blue;
     color: white;
     text-align: center;
-    padding: 80px 20px;
+    padding: 60px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,14 +86,4 @@ nav {
     width: 150px !important;
     height: auto !important;
     margin-bottom: 20px;
-}
-
-.intro h1 {
-    font-size: 28px;
-    margin-bottom: 15px;
-}
-
-.intro p {
-    max-width: 800px;
-    line-height: 1.6;
 }
