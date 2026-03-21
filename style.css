@@ -77,6 +77,18 @@ nav {
     display: block;
   }
 }
+/* search bar */
+#navSearchContainer {
+  position: relative;
+}
+
+#results {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: white;
+  display: none;
+}
 
 /* Hamburger */
 .hamburger {
