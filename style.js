@@ -28,23 +28,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     return true; // Navbar initialized
-  }
 
-  // Retry every 100ms if navbar is loaded dynamically
-  if (!initNavbar()) {
-    const interval = setInterval(() => {
-      if (initNavbar()) clearInterval(interval);
-    }, 100);
-  }
+  // Toggle month tables
+  const monthButtons = document.querySelectorAll(".month-toggle");
 
-  // ----------------------------
-  // 2️⃣ MONTH TABLE TOGGLE
-  // ----------------------------
-  document.querySelectorAll('.month-toggle').forEach(button => {
-    button.addEventListener('click', () => {
-      const table = button.nextElementSibling; // the table immediately after the button
-      if (table) table.classList.toggle('show'); // toggle the 'show' class
+  monthButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const table = button.nextElementSibling; // get the table right after the button
+      if (table) {
+        table.classList.toggle("show"); // toggle the 'show' class
+      }
     });
   });
+
+  // Optional: sort months if you use data-month attributes
+  const container = document.getElementById("months-container");
+  if (container) {
+    const months = Array.from(container.querySelectorAll(".month"));
+    months.sort((a, b) => {
+      const dateA = new Date(a.dataset.month);
+      const dateB = new Date(b.dataset.month);
+      return dateA - dateB;
+    });
+    months.forEach(month => container.appendChild(month));
+  }
 
 });
