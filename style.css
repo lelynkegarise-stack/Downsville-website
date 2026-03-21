@@ -158,3 +158,54 @@ nav {
     .intro { padding: 20px; min-height: auto; }
     .logo1 { width: 80px !important; }
 }
+/* ===== 5. LOCATION SECTION (TEXT LEFT, MAP RIGHT) ===== */
+.location-container {
+    padding: 60px 10%;
+    background-color: #f9f9f9; /* Light gray to make the map pop */
+}
+
+.location-content {
+    display: flex;
+    align-items: center; /* Vertically aligns text with map center */
+    justify-content: space-between;
+    gap: 40px; /* Space between text and map */
+}
+
+.location-text {
+    flex: 1; /* Takes up 50% */
+    text-align: left;
+}
+
+.location-text h2 {
+    color: blue;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.location-text p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.location-map {
+    flex: 1; /* Takes up 50% */
+    min-width: 300px; /* Prevents it from getting too small */
+}
+
+/* MOBILE FIX: Stacks them on phones so it's not squished */
+@media screen and (max-width: 950px) {
+    .location-content {
+        flex-direction: column; 
+        text-align: center;
+    }
+    
+    .location-text {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .location-container {
+        padding: 40px 5%;
+    }
+}
