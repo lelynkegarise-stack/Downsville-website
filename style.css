@@ -1,4 +1,4 @@
-/* ===== 1. RESET & GLOBAL ===== */
+/* ===== 1. GLOBAL & ROTATION FIXES ===== */
 html {
     -webkit-text-size-adjust: none !important;
     text-size-adjust: none !important;
@@ -13,16 +13,17 @@ body {
     width: 100%;
 }
 
-/* ===== 2. NAVIGATION (THE BAR) ===== */
+/* ===== 2. NAVIGATION BAR (Desktop Bar) ===== */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 5%;
+    padding: 10px 5%;
     background-color: #ffffff;
-    position: sticky;
+    position: sticky; /* Keeps it at the top */
     top: 0;
-    z-index: 2000;
+    z-index: 3000;
+    height: 70px; /* Fixed height for consistency */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -31,7 +32,7 @@ nav {
     width: auto !important;
 }
 
-/* DESKTOP MENU: Shows as a horizontal bar */
+/* Big Screen Menu: Horizontal Bar */
 .menu {
     list-style: none !important;
     display: flex;
@@ -46,24 +47,20 @@ nav {
     color: #333;
     font-weight: 600;
     padding: 8px 12px;
-    transition: 0.3s;
 }
 
-.menu li a:hover {
-    color: blue;
-}
-
-/* HAMBURGER: Hidden on big screens */
 .hamburger {
-    display: none;
+    display: none; /* Hidden on Desktop */
     font-size: 30px;
-    background: none;
+    background: #f0f0f0;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
     color: blue;
+    padding: 5px 10px;
 }
 
-/* DROPDOWN (About Us) */
+/* About Us Dropdown */
 .dropdown { position: relative; }
 .dropdown-content {
     display: none;
@@ -78,66 +75,74 @@ nav {
 }
 .dropdown:hover .dropdown-content { display: block; }
 
-/* ===== 3. INTRO & CONTENT ===== */
+/* ===== 3. CONTENT SECTIONS ===== */
 .intro {
     background: linear-gradient(135deg, blue, darkblue);
     color: white;
     text-align: center;
-    padding: 80px 20px;
+    padding: 60px 20px;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo1 {
-    width: 150px !important;
+    width: 160px !important;
     height: auto !important;
     margin-bottom: 20px;
 }
 
-.location {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 50px 10%;
-    gap: 30px;
+.intro p {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
-.text, .map { flex: 1; min-width: 300px; }
-
-/* ===== 4. MOBILE RESPONSIVENESS (THE THREE LINES) ===== */
+/* ===== 4. MOBILE FIX (The "Three Lines" Logic) ===== */
 @media screen and (max-width: 950px) {
-    /* Show the three lines */
     .hamburger { 
-        display: block; 
+        display: block; /* Show the button */
     }
 
-    /* Hide the horizontal bar and turn it into a vertical list */
     .menu {
-        display: none; 
+        display: none; /* HIDE BY DEFAULT - Fixes IMG_5593 */
         flex-direction: column;
-        position: absolute;
-        top: 100%;
+        position: absolute; /* FLOATS over the blue - Fixes background */
+        top: 70px; /* Right below the nav height */
         left: 0;
         width: 100%;
         background-color: white;
-        padding: 20px 0;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        padding: 0;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        z-index: 2999;
     }
 
-    /* This shows the menu when you click the hamburger */
+    /* This class is added by your JS when you click the button */
     .menu.active { 
         display: flex !important; 
     }
 
-    .menu li { width: 100%; text-align: center; }
-    .menu li a { display: block; padding: 15px; border-bottom: 1px solid #eee; }
+    .menu li { 
+        width: 100%; 
+        border-bottom: 1px solid #eee; 
+    }
+
+    .menu li a { 
+        display: block; 
+        padding: 15px 25px; 
+        text-align: left; 
+    }
 
     /* Mobile Dropdown Fix */
-    .dropdown-content { position: static; box-shadow: none; border: none; background: #f9f9f9; }
-    .dropdown.open .dropdown-content { display: block; }
-
-    .location { flex-direction: column; text-align: center; }
-}
-
-/* SIDEWAYS PHONE LANDSCAPE FIX */
-@media screen and (orientation: landscape) and (max-height: 500px) {
-    .intro { padding: 30px; }
-    .logo1 { width: 80px !important; }
+    .dropdown-content { 
+        position: static; 
+        box-shadow: none; 
+        background: #f9f9f9; 
+        border: none; 
+    }
+    .dropdown.open .dropdown-content { 
+        display: block; 
+    }
 }
