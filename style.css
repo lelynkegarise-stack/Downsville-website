@@ -103,13 +103,37 @@ nav {
 }
 
 /* ===== CALENDAR ===== */
-.month-table { display: none; width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-.month-table th, .month-table td { border: 2px solid black; padding: 10px; }
-.month-toggle {
-  width: 100%; padding: 12px;
-  background-color: blue; color: white;
-  border: none; cursor: pointer; font-size: 16px; margin-top: 10px;
+/* Calendar tables hidden by default */
+.month-table {
+  display: none; /* hidden initially */
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
-.month-toggle:hover { background-color: rgb(196,196,0); }
 
-.month-table.show { display: table; }
+.month-table th,
+.month-table td {
+  border: 2px solid black;
+  padding: 10px;
+}
+
+/* Class to show the table */
+.month-table.show {
+  display: table; /* visible when .show is applied */
+}
+
+/* Month toggle button */
+.month-toggle {
+  width: 100%;
+  padding: 12px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.month-toggle:hover {
+  background-color: rgb(196,196,0);
+}
