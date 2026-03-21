@@ -1,7 +1,10 @@
 /* ===== GENERAL ===== */
 html {
-    -webkit-text-size-adjust: 100%; /* Prevents iOS from auto-inflating text */
+    -webkit-text-size-adjust: none !important;
+    text-size-adjust: none !important;
+    -ms-text-size-adjust: none !important;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -30,13 +33,9 @@ body {
     width: 100%;
     max-width: 800px;
 }
-
 .logo1 {
-    width: 150px; /* Fixed width so it can't "get huge" */
-    max-width: 40%; /* Won't exceed 40% of screen width */
-    height: auto;
-    display: block;
-    margin: 0 auto;
+    width: 150px !important; /* The !important makes it override everything else */
+    height: auto !important;
 }
 
 .intro p {
