@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ----------------------------
   function initNavbar() {
     const nav = document.querySelector('nav');
-    if (!nav) return false;
+    if (!nav) return false; // Navbar not loaded yet
 
     const hamburger = nav.querySelector('.hamburger');
     const menu = nav.querySelector('.menu');
@@ -30,31 +30,21 @@ document.addEventListener("DOMContentLoaded", () => {
     return true; // Navbar initialized
   }
 
-  // Try to initialize immediately, else retry if navbar is loaded dynamically
+  // Retry every 100ms if navbar is loaded dynamically
   if (!initNavbar()) {
-    const navbarInterval = setInterval(() => {
-      if (initNavbar()) clearInterval(navbarInterval);
+    const interval = setInterval(() => {
+      if (initNavbar()) clearInterval(interval);
     }, 100);
   }
 
   // ----------------------------
-  // 2️⃣ MONTH CALENDAR TOGGLE
+  // 2️⃣ MONTH TABLE TOGGLE
   // ----------------------------
-  document.querySelectorAll(".month-toggle").forEach(button => {
-    button.addEventListener("click", () => {
-      const table = button.nextElementSibling;
-      if (table) table.classList.toggle("show");
+  document.querySelectorAll('.month-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const table = button.nextElementSibling; // the table immediately after the button
+      if (table) table.classList.toggle('show'); // toggle the 'show' class
     });
   });
-
-  // ----------------------------
-  // 3️⃣ OPTIONAL: SORT MONTHS
-  // ----------------------------
-  const container = document.getElementById("months-container");
-  if (container) {
-    const months = Array.from(document.querySelectorAll(".month"));
-    months.sort((a,b) => new Date(a.dataset.month) - new Date(b.dataset.month));
-    months.forEach(month => container.appendChild(month));
-  }
 
 });
