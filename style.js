@@ -1,45 +1,32 @@
-// ===== 1. NAVBAR & SEARCH LOAD =====
 fetch("./navbar.html")
   .then(response => response.text())
   .then(data => {
     document.getElementById("navbar").innerHTML = data;
 
-    // FIND BUTTONS (Supports both IDs and Classes)
-    const hamburger = document.getElementById("hamburger") || document.querySelector(".hamburger");
-    const menu = document.getElementById("menu") || document.querySelector(".menu");
+    const hamburger = document.getElementById("hamburger");
+    const menu = document.getElementById("menu");
     const searchButton = document.getElementById("searchButton");
     const searchBox = document.getElementById("searchBox");
 
-    // ===== HAMBURGER TOGGLE =====
+    // 1. Hamburger Toggle (Fixes the weird overlap)
     if (hamburger && menu) {
-      hamburger.addEventListener("click", () => {
+      hamburger.addEventListener("click", (e) => {
+        e.stopPropagation();
         menu.classList.toggle("active");
-        
-        // Safety: If JS is forcing styles, ensure it toggles correctly
-        if (menu.classList.contains("active")) {
-          menu.style.display = "flex";
-        } else {
-          menu.style.display = "none";
-        }
       });
     }
 
-    // ===== MOBILE DROPDOWN TOGGLE (for About Us/History) =====
+    // 2. Mobile Dropdown (About Us)
     document.querySelectorAll(".dropdown > a").forEach(link => {
       link.addEventListener("click", (e) => {
-        if (window.innerWidth <= 950) { // Catch landscape phones
-          const parent = link.parentElement;
-          if (!parent.classList.contains("open")) {
-            e.preventDefault();
-            // Close other open dropdowns
-            document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
-            parent.classList.add("open");
-          }
+        if (window.innerWidth <= 950) {
+          e.preventDefault();
+          link.parentElement.classList.toggle("open");
         }
       });
     });
 
-    // ===== SEARCH BOX TOGGLE =====
+    // 3. Search Toggle
     if (searchButton && searchBox) {
       searchButton.addEventListener("click", () => {
         const isHidden = searchBox.style.display === "none" || searchBox.style.display === "";
@@ -47,29 +34,20 @@ fetch("./navbar.html")
         if (isHidden) searchBox.focus();
       });
     }
+
+    // Close menu if user clicks the page content
+    document.addEventListener("click", () => {
+      if (menu && menu.classList.contains("active")) {
+        menu.classList.remove("active");
+      }
+    });
   })
-  .catch(error => console.error("Navbar failed to load:", error));
+  .catch(err => console.error("Nav load error:", err));
 
-
-// ===== 2. CALENDAR TABLE TOGGLE =====
+// Calendar Toggle
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("month-toggle")) {
     const table = e.target.nextElementSibling;
-    if (table) {
-      table.style.display = table.style.display === "table" ? "none" : "table";
-    }
+    table.style.display = table.style.display === "table" ? "none" : "table";
   }
 });
-
-
-// ===== 3. AUTO-REMOVE PAST EVENTS =====
-// We run this on a slight delay to make sure tables are loaded
-setTimeout(() => {
-  const now = new Date();
-  document.querySelectorAll("tr[data-date]").forEach(row => {
-    const eventDate = new Date(row.dataset.date);
-    if (eventDate < now) {
-      row.remove();
-    }
-  });
-}, 500);
