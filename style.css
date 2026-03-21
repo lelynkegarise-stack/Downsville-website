@@ -230,17 +230,7 @@ nav {
     padding: 20px 5%;
 }
     /* ===== EVENTS ===== */
-.container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
 
-.left,
-.right {
-    width: 45%;
-    text-align: center;
-}
 
 /* ===== CALENDAR ===== */
 .month-table {
@@ -276,6 +266,7 @@ nav {
 .month-toggle:hover {
     background-color: rgb(196, 196, 0);
 }
+
 
 /* ===== FORMS ===== */
 form {
