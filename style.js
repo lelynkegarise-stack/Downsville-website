@@ -1,56 +1,60 @@
-fetch("./navbar.html")
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById("navbar").innerHTML = data;
+document.addEventListener("DOMContentLoaded", () => {
 
-    const hamburger = document.getElementById("hamburger");
-    const menu = document.getElementById("menu");
-    const searchButton = document.getElementById("searchButton");
-    const searchBox = document.getElementById("searchBox");
+  // ----------------------------
+  // 1️⃣ HAMBURGER & MOBILE DROPDOWNS
+  // ----------------------------
+  function initNavbar() {
+    const nav = document.querySelector('nav');
+    if (!nav) return false;
 
-    // 1. Hamburger Toggle
+    const hamburger = nav.querySelector('.hamburger');
+    const menu = nav.querySelector('.menu');
+
     if (hamburger && menu) {
-      hamburger.addEventListener("click", () => {
-        menu.classList.toggle("active");
+      // Hamburger toggle
+      hamburger.addEventListener('click', () => {
+        menu.classList.toggle('active');
+      });
+
+      // Mobile dropdown toggle
+      nav.querySelectorAll('.dropdown > a').forEach(link => {
+        link.addEventListener('click', function(e){
+          if (window.innerWidth <= 950) {
+            e.preventDefault();
+            this.parentElement.classList.toggle('open');
+          }
+        });
       });
     }
 
-    // 2. Mobile Dropdown (About Us)
-    document.querySelectorAll(".dropdown > a").forEach(link => {
-      link.addEventListener("click", (e) => {
-        if (window.innerWidth <= 950) {
-          e.preventDefault();
-          link.parentElement.classList.toggle("open");
-        }
-      });
+    return true; // Navbar initialized
+  }
+
+  // Try to initialize immediately, else retry if navbar is loaded dynamically
+  if (!initNavbar()) {
+    const navbarInterval = setInterval(() => {
+      if (initNavbar()) clearInterval(navbarInterval);
+    }, 100);
+  }
+
+  // ----------------------------
+  // 2️⃣ MONTH CALENDAR TOGGLE
+  // ----------------------------
+  document.querySelectorAll(".month-toggle").forEach(button => {
+    button.addEventListener("click", () => {
+      const table = button.nextElementSibling;
+      if (table) table.classList.toggle("show");
     });
-
-// 3. Search Toggle Fix
-if (searchButton && searchBox) {
-  searchButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    // Toggle between none and inline-block
-    if (searchBox.style.display === "none" || searchBox.style.display === "") {
-      searchBox.style.display = "inline-block";
-      searchBox.focus();
-    } else {
-      searchBox.style.display = "none";
-    }
   });
-}
 
-// Calendar logic
-document.querySelectorAll('.month-toggle').forEach(button => {
-  button.addEventListener('click', () => {
-    // Use querySelector to find the table in the same container
-    const table = button.parentElement.querySelector('.month-table');
-    if (!table) return;
+  // ----------------------------
+  // 3️⃣ OPTIONAL: SORT MONTHS
+  // ----------------------------
+  const container = document.getElementById("months-container");
+  if (container) {
+    const months = Array.from(document.querySelectorAll(".month"));
+    months.sort((a,b) => new Date(a.dataset.month) - new Date(b.dataset.month));
+    months.forEach(month => container.appendChild(month));
+  }
 
-    // Toggle visibility
-    if (table.classList.contains('show')) {
-      table.classList.remove('show');
-    } else {
-      table.classList.add('show');
-    }
-  });
 });
