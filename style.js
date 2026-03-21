@@ -40,16 +40,17 @@ if (searchButton && searchBox) {
 }
 
 // Calendar logic
-<script>
 document.querySelectorAll('.month-toggle').forEach(button => {
   button.addEventListener('click', () => {
-    const table = button.nextElementSibling; // Assumes the table is right after the button
-    if (table.style.display === 'table') {
-      table.style.display = 'none';
+    // Use querySelector to find the table in the same container
+    const table = button.parentElement.querySelector('.month-table');
+    if (!table) return;
+
+    // Toggle visibility
+    if (table.classList.contains('show')) {
+      table.classList.remove('show');
     } else {
-      table.style.display = 'table';
+      table.classList.add('show');
     }
   });
 });
-
-
