@@ -72,7 +72,7 @@ nav {
 }
 
 /* Desktop hover ONLY */
-@media (min-width: 601px) {
+@media (min-width: 600px) {
   .dropdown:hover .dropdown-content {
     display: block;
   }
@@ -89,6 +89,7 @@ nav {
 #searchBox {
   display: none;
   margin-left: 8px;
+    width:150px;
 }
 
 /* Hamburger */
@@ -102,6 +103,8 @@ nav {
 
 /* ===== MOBILE ===== */
 @media (max-width: 600px) {
+  nav{
+      flex-wrap: wrap;
   .menu {
     display: none;
     flex-direction: column;
