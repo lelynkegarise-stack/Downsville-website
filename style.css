@@ -201,35 +201,60 @@ button {
 /* ==========================
    7. CALENDAR / MONTH TOGGLE
    ========================== */
-.month-table {
-    display: none;
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+/* ===== CALENDAR ===== */
+.month {
+  margin-bottom: 20px;
 }
 
-.month-table th, .month-table td {
-    border: 2px solid black;
-    padding: 10px;
-}
-
-.month-table.show {
-    display: table;
-}
-
+/* Month buttons */
 .month-toggle {
-    width: 100%;
-    padding: 12px;
-    background-color: blue;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
+  margin-bottom: 5px;
+  border-radius: 5px;
 }
 
 .month-toggle:hover {
-    background-color: rgb(196,196,0);
+  background-color: darkblue;
+}
+
+/* Tables hidden by default */
+.month-table {
+  display: none;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.month-table.show {
+  display: table;
+}
+
+/* Table styling */
+.month-table th,
+.month-table td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: left;
+}
+
+.month-table th {
+  background-color: #ddd;
+}
+
+.month-table td a {
+  color: blue;
+  text-decoration: none;
+}
+
+.month-table td a:hover {
+  text-decoration: underline;
 }
 
 /* ==========================
