@@ -1,64 +1,75 @@
-/* GLOBAL RESET */
-body, html { margin: 0; padding: 0; font-family: Arial, sans-serif; width: 100%; overflow-x: hidden; }
+/* ===== 1. CORE FIXES & GLOBAL ===== */
+html {
+    -webkit-text-size-adjust: none !important;
+    text-size-adjust: none !important;
+}
 
-/* THE NAV BAR CONTAINER */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ===== 2. THE WORKING NAV BAR ===== */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5%;
+    padding: 10px 5%;
     background-color: white;
-    height: 70px;
-    position: sticky;
-    top: 0;
-    z-index: 9999;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.logo img { height: 45px !important; width: auto !important; }
+.logo img {
+    height: 50px !important; /* Keeps the logo small */
+    width: auto !important;
+}
 
-/* DESKTOP MENU (Horizontal) */
-.menu { display: flex; list-style: none; gap: 20px; margin: 0; padding: 0; }
-.menu li a { text-decoration: none; color: #333; font-weight: bold; }
+.menu {
+    display: flex;
+    list-style: none !important;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
 
+.menu li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+/* Hide the hamburger since we're going back to the bar */
 .hamburger {
-    display: none; /* Hidden on computers */
-    font-size: 30px;
-    background: none;
-    border: none;
-    color: blue;
-    cursor: pointer;
+    display: none !important;
 }
 
-/* MOBILE VIEW (The "Three Lines" Logic) */
-@media screen and (max-width: 950px) {
-    .hamburger { display: block !important; }
-
-    .menu {
-        display: none !important; /* Hide by default */
-        flex-direction: column;
-        position: absolute; /* FLOATS OVER THE BLUE */
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        z-index: 9998;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    }
-
-    /* Triggered by JavaScript */
-    .menu.active { display: flex !important; }
-
-    .menu li { width: 100%; border-bottom: 1px solid #eee; }
-    .menu li a { display: block; padding: 15px 25px; }
-}
-
-/* THE BLUE INTRO SECTION */
+/* ===== 3. THE BLUE INTRO SECTION ===== */
 .intro {
-    background: linear-gradient(blue, darkblue);
+    background-color: #0000ff; /* Solid Blue */
     color: white;
     text-align: center;
     padding: 80px 20px;
-    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.logo1 { width: 150px !important; height: auto !important; margin-bottom: 20px; }
+
+.logo1 {
+    width: 150px !important;
+    height: auto !important;
+    margin-bottom: 20px;
+}
+
+.intro h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.intro p {
+    max-width: 800px;
+    line-height: 1.6;
+}
