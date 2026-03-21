@@ -227,9 +227,9 @@ button {
 /* Tables hidden by default */
 .month-table {
   display: none;
-  width: 100%;
+  /*width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-bottom: 20px;*/
 }
 
 .month-table.show {
