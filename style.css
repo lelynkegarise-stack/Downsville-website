@@ -98,13 +98,19 @@ nav {
     padding: 40px 20px;
     box-sizing: border-box;
 }
+.intro h1 {
+    margin: 0 0 20px 0;
+}
+
+.intro p {
+    max-width: 800px;
+    margin-top: 20px; /* 🔹 add spacing below the heading/logo */
 
 .logo1 {
     width: 150px !important;
     height: auto !important;
     margin: 20px 0;
 }
-
 /* ===== 4. MOBILE & ROTATION FIX ===== */
 @media screen and (max-width: 950px) {
     .hamburger { 
@@ -222,4 +228,78 @@ nav {
     max-width: 100%;
     margin: 0;
     padding: 20px 5%;
+}
+    /* ===== EVENTS ===== */
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.left,
+.right {
+    width: 45%;
+    text-align: center;
+}
+
+/* ===== CALENDAR ===== */
+.month-table {
+    display: none;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid black;
+    margin-bottom: 20px;
+}
+
+.month-table th {
+    border: 2px solid black;
+    background-color: #ddd;
+    padding: 10px;
+}
+
+.month-table td {
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.month-toggle {
+    width: 100%;
+    padding: 12px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.month-toggle:hover {
+    background-color: rgb(196, 196, 0);
+}
+
+/* ===== FORMS ===== */
+form {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+}
+
+button {
+    margin-top: 16px;
+    padding: 10px 20px;
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
