@@ -1,242 +1,75 @@
-/* ===== GENERAL ===== */
-html {
-    -webkit-text-size-adjust: 100%;
-}
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden; /* Prevents side-scrolling */
-}
+/* ===== PRETTY DROPDOWN ===== */
 
-h1, h4, p {
-    text-align: center;
-}
-
-h1 {
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-/* ===== NAVIGATION ===== */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    background-color: white;
-    position: relative;
-    z-index: 100;
-}
-
-.logo img {
-    max-height: 50px;
-    width: auto;
-}
-
-.menu {
-    list-style: none;
-    display: flex;
-    gap: 10px;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-}
-
-.menu li a {
-    display: block;
-    padding: 15px 20px;
-    text-decoration: none;
-    color: blue;
-    white-space: nowrap;
-}
-
-/* Dropdown base */
+/* The container for "About Us" */
 .dropdown {
     position: relative;
+    display: inline-block;
 }
 
+/* The actual box that pops out */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #444;
-    min-width: 160px;
-    top: 100%;
+    top: 100%; /* Sits exactly below the Nav link */
     left: 0;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+    border-radius: 4px; /* Rounded corners */
+    border-top: 3px solid blue; /* Matches your theme color */
     z-index: 1000;
+    padding: 10px 0;
+    list-style: none !important;
 }
 
+/* Individual links inside the dropdown (History, Mission, Join) */
 .dropdown-content li a {
-    padding: 12px 16px;
-    color: white;
-    display: block;
+    color: #333 !important; /* Dark text for readability */
+    padding: 12px 20px;
     text-decoration: none;
+    display: block;
+    font-size: 15px;
+    font-weight: normal;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Desktop hover */
-@media (min-width: 901px) {
+/* Hover effect for the links inside the box */
+.dropdown-content li a:hover {
+    background-color: #f1f1f1;
+    color: blue !important; /* Turns blue when you hover over it */
+}
+
+/* Show the dropdown when hovering (Desktop only) */
+@media (min-width: 951px) {
     .dropdown:hover .dropdown-content {
         display: block;
+        animation: fadeIn 0.3s ease; /* Smooth fade-in effect */
     }
 }
 
-/* Search bar */
-#navSearchContainer {
-    display: flex;
-    align-items: center;
-    position: relative;
-    gap: 5px;
+/* Simple fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-#searchBox {
-    display: none;
-    margin-left: 8px;
-    width: 150px;
-}
-
-/* Hamburger */
-.hamburger {
-    display: none;
-    font-size: 28px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: blue;
-}
-
-/* ===== INTRO (THE BLUE SECTION) ===== */
-.intro {
-    background-color: blue;
-    color: white;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    min-height: 60vh; /* Reduced from 80vh to prevent blowout */
-    padding: 60px 20px;
-}
-
-.intro h1 {
-    font-size: clamp(24px, 5vw, 40px);
-    margin: 0 0 20px 0;
-}
-
-.intro p {
-    max-width: 800px;
-    margin-top: 20px;
-    font-size: clamp(16px, 2vw, 20px);
-    line-height: 1.6;
-}
-
-.logo1 {
-    width: 150px;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-/* ===== LOCATION & EVENTS ===== */
-.container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 20px;
-}
-
-.left, .right {
-    width: 45%;
-    text-align: center;
-}
-
-.location {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-    padding: 20px;
-}
-
-.text, .map {
-    flex: 1;
-}
-
-/* ===== MISSION ===== */
-.mission {
-    color: blue;
-    text-align: center;
-    max-width: 700px;
-    margin: 40px auto;
-}
-
-h2, ul {
-    color: black;
-    text-align: center;
-    max-width: 700px;
-    margin: 20px auto;
-}
-
-/* ===== 📱 RESPONSIVE FIXES (PHONES & TABLETS) ===== */
-@media (max-width: 900px) {
-    nav {
-        padding: 10px 20px;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .menu {
-        display: none; /* Hidden until .active class is added via JS */
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
+/* ===== MOBILE DROPDOWN ADJUSTMENTS ===== */
+@media (max-width: 950px) {
+    .dropdown-content {
+        position: static; /* Stacks vertically on phones */
         width: 100%;
-        background-color: white;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: none;
+        border-top: none;
+        background-color: #f9f9f9; /* Slightly off-white for contrast */
+        padding: 0;
+    }
+    
+    .dropdown.open .dropdown-content {
+        display: block !important;
     }
 
-    .menu.active {
-        display: flex;
-    }
-
-    .menu li {
-        width: 100%;
-    }
-
-    .menu li a {
-        border-top: 1px solid #eee;
-        padding: 15px;
-    }
-
-    .intro {
-        min-height: auto; /* Stops the blue box from being too tall */
-        padding: 40px 15px;
-    }
-
-    .logo1 {
-        width: 100px; /* Tames the logo size */
-    }
-
-    .left, .right, .text, .map {
-        width: 100%;
-        flex: none;
-    }
-
-    .location {
-        flex-direction: column;
-    }
-}
-
-/* 📱 LANDSCAPE SPECIFIC (SIDEEWAYS PHONE) */
-@media screen and (orientation: landscape) and (max-height: 500px) {
-    .intro {
-        padding: 20px;
-    }
-    .logo1 {
-        width: 80px;
-    }
-    .intro h1 {
-        font-size: 22px;
+    .dropdown-content li a {
+        padding-left: 40px; /* Indents the links so they look like sub-items */
+        border-bottom: 1px solid #eee;
     }
 }
