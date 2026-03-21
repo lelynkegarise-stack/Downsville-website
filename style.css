@@ -206,3 +206,20 @@ nav {
         margin-bottom: 30px;
     }
 }
+/* ===== 6. FOOTER FIX (FULL WIDTH) ===== */
+#footer, footer {
+    width: 100% !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #333; /* Or whatever color your footer is */
+    clear: both; /* Prevents side-by-side elements from interfering */
+}
+
+/* If you have a container INSIDE your footer.html, 
+   make sure that is also styled correctly */
+.footer-content {
+    max-width: 100%;
+    margin: 0;
+    padding: 20px 5%;
+}
