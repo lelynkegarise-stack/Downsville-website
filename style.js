@@ -1,36 +1,29 @@
-//fetch("./navbar.html")
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById("navbar").innerHTML = data;
+// 1. The Navbar Loader
+function loadNavbar() {
+    fetch("./navbar.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("navbar").innerHTML = data;
+            console.log("Navbar loaded into the DOM.");
+            setupMobileMenu(); // Start the button logic ONLY after load
+        })
+        .catch(err => console.error("Failed to load navbar.html:", err));
+}
 
-    // FIND THE BUTTONS AFTER THEY ARE LOADED
+// 2. The Button Logic
+function setupMobileMenu() {
     const hamburger = document.getElementById("hamburger");
     const menu = document.getElementById("menu");
 
     if (hamburger && menu) {
-      hamburger.addEventListener("click", function(e) {
-        e.preventDefault();
-        e.stopPropagation(); // Prevents the 'click' from closing the menu immediately
-        menu.classList.toggle("active");
-      });
+        hamburger.onclick = function() {
+            console.log("Hamburger clicked!");
+            menu.classList.toggle("active");
+        };
+    } else {
+        console.error("Could not find hamburger or menu IDs in navbar.html");
     }
+}
 
-    // Handle the "About Us" dropdown on mobile
-    document.querySelectorAll(".dropdown > a").forEach(link => {
-      link.addEventListener("click", (e) => {
-        if (window.innerWidth <= 950) {
-          e.preventDefault();
-          link.parentElement.classList.toggle("open");
-        }
-      });
-    });
-  })
-  .catch(err => console.error("Error loading navbar:", err));
-
-// Optional: Close menu if you click the main page
-document.addEventListener("click", (e) => {
-  const menu = document.getElementById("menu");
-  if (menu && menu.classList.contains("active") && !menu.contains(e.target)) {
-    menu.classList.remove("active");
-  }
-});
+// Run the loader when the page opens
+window.onload = loadNavbar;
