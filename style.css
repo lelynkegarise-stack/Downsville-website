@@ -79,15 +79,15 @@ nav {
 }
 /* search bar */
 #navSearchContainer {
+  display: flex;
+  align-items: center;
   position: relative;
+  flex-wrap: nowrap; /* prevents wrapping */
 }
 
-#results {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  background: white;
+#searchBox {
   display: none;
+  margin-left: 8px;
 }
 
 /* Hamburger */
