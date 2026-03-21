@@ -40,9 +40,16 @@ if (searchButton && searchBox) {
 }
 
 // Calendar logic
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("month-toggle")) {
-    const table = e.target.nextElementSibling;
-    table.style.display = table.style.display === "table" ? "none" : "table";
-  }
+<script>
+document.querySelectorAll('.month-toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    const table = button.nextElementSibling; // Assumes the table is right after the button
+    if (table.style.display === 'table') {
+      table.style.display = 'none';
+    } else {
+      table.style.display = 'table';
+    }
+  });
 });
+
+
