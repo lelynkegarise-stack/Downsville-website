@@ -1,62 +1,106 @@
-/* ===== GENERAL ===== */
+/* ===== 1. CORE FIXES & GLOBAL STYLES ===== */
 html {
     -webkit-text-size-adjust: none !important;
     text-size-adjust: none !important;
-    -ms-text-size-adjust: none !important;
+    scroll-behavior: smooth; /* Makes clicking "About Us" scroll smoothly */
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif; /* Modern font stack */
     overflow-x: hidden;
     width: 100%;
+    color: #333;
 }
 
-/* ===== NAVIGATION (NEW FIXES ADDED HERE) ===== */
+/* ===== 2. PRETTY NAVIGATION BAR ===== */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: white;
-    position: relative;
-    z-index: 1000;
+    padding: 12px 30px;
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* Fixes the logo in the top corner from getting huge */
-.logo img, #navbar img {
-    height: 50px !important; 
+.logo img {
+    height: 48px !important;
     width: auto !important;
+    transition: transform 0.3s ease;
 }
 
-/* Removes those purple dots/bullets */
+.logo img:hover {
+    transform: scale(1.05);
+}
+
 .menu {
-    list-style: none;
+    list-style: none !important;
+    display: flex;
+    gap: 10px;
     margin: 0;
     padding: 0;
-    display: flex;
-    gap: 15px;
+    align-items: center;
 }
 
 .menu li a {
     text-decoration: none;
-    color: blue;
-    font-weight: bold;
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
 }
 
-/* Hide hamburger on desktop */
+.menu li a:hover {
+    color: #0044cc; /* Royal Blue */
+    background-color: #f0f4ff;
+}
+
+/* Dropdown (About Us) */
+.dropdown { position: relative; }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 190px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    border-top: 3px solid #0044cc;
+    padding: 8px 0;
+}
+
+.dropdown-content li a {
+    padding: 12px 20px !important;
+    font-weight: 400;
+    color: #444 !important;
+}
+
+.dropdown-content li a:hover {
+    background-color: #f1f1f1;
+    padding-left: 25px !important;
+}
+
 .hamburger {
     display: none;
-    font-size: 28px;
-    background: none;
+    font-size: 26px;
+    background: #f8f9fa;
     border: none;
     cursor: pointer;
+    color: #0044cc;
+    padding: 8px 12px;
+    border-radius: 50%;
 }
 
-/* ===== INTRO SECTION ===== */
+/* ===== 3. INTRO SECTION (BLUE BOX) ===== */
 .intro {
-    background-color: blue;
+    background: linear-gradient(135deg, #0044cc 0%, #002266 100%); /* Elegant Gradient */
     color: white;
     text-align: center;
     display: flex;
@@ -64,53 +108,69 @@ nav {
     align-items: center;
     justify-content: center;
     min-height: 60vh;
-    padding: 40px 20px;
+    padding: 60px 20px;
     box-sizing: border-box;
 }
 
 .intro h1 {
+    font-size: clamp(24px, 6vw, 42px);
     margin: 0 0 20px 0;
-    font-size: clamp(22px, 5vw, 36px);
-    width: 100%;
-    max-width: 800px;
+    line-height: 1.2;
+    max-width: 900px;
 }
 
 .logo1 {
-    width: 150px !important;
+    width: 160px !important;
     height: auto !important;
-    margin-top: 20px;
+    margin: 30px 0;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
 }
 
 .intro p {
-    max-width: 700px;
-    margin: 20px auto 0 auto;
-    font-size: clamp(16px, 2vw, 19px);
-    line-height: 1.5;
+    max-width: 750px;
+    margin: 0 auto;
+    font-size: clamp(16px, 2.5vw, 20px);
+    line-height: 1.7;
+    opacity: 0.95;
 }
 
-/* ===== LOCATION SECTION ===== */
+/* ===== 4. LOCATION & CONTENT SECTIONS ===== */
 .location {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: 40px 20px;
+    gap: 40px;
+    padding: 60px 10%;
+    background-color: #fff;
 }
 
 .text, .map {
     flex: 1;
-    min-width: 300px;
+    min-width: 320px;
 }
 
-/* ===== 📱 RESPONSIVE & LANDSCAPE FIXES ===== */
+.text h2 {
+    color: #0044cc;
+    text-align: left;
+    margin-bottom: 20px;
+}
 
+.text p {
+    text-align: left;
+    line-height: 1.6;
+    font-size: 17px;
+}
+
+iframe {
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* ===== 5. MOBILE & ROTATION FIXES ===== */
 @media screen and (max-width: 950px) {
-    /* Styles for the Mobile Menu */
-    .hamburger {
-        display: block;
-    }
+    .hamburger { display: block; }
 
     .menu {
-        display: none; /* Hide until 'active' class is added via JS */
+        display: none;
         flex-direction: column;
         position: absolute;
         top: 100%;
@@ -118,41 +178,31 @@ nav {
         width: 100%;
         background-color: white;
         padding: 20px 0;
-        border-bottom: 2px solid blue;
     }
 
-    .menu.active {
-        display: flex;
+    .menu.active { display: flex !important; }
+
+    .menu li { width: 100%; }
+
+    .menu li a {
+        padding: 15px 30px;
+        border-bottom: 1px solid #eee;
     }
 
-    .menu li {
-        text-align: center;
-        padding: 10px 0;
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background-color: #f9f9f9;
+        border-top: none;
     }
 
-    .intro {
-        min-height: auto;
-        padding: 60px 20px;
-    }
-    
-    .location {
-        flex-direction: column;
-        text-align: center;
-    }
+    .dropdown-content li a { padding-left: 50px !important; }
+
+    .location { padding: 40px 20px; flex-direction: column; }
+    .text h2, .text p { text-align: center; }
 }
 
-/* 📱 SPECIFIC LANDSCAPE FIX (When phone is sideways) */
+/* SIDEYWAYS PHONE FIX */
 @media screen and (orientation: landscape) and (max-height: 500px) {
-    .intro {
-        padding: 30px 10px;
-    }
-    .intro h1 {
-        font-size: 20px;
-    }
-    .logo1 {
-        width: 80px !important;
-    }
-    .intro p {
-        font-size: 15px;
-    }
-}
+    .intro { padding: 30px 20px; min-height: auto; }
+    .logo1 { width: 9
