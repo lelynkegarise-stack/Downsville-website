@@ -1,179 +1,115 @@
-/* ===== 1. CORE FIXES & RESET ===== */
-html {
-    -webkit-text-size-adjust: none !important;
-    text-size-adjust: none !important;
+/* ===== 1. RESET ===== */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
-    width: 100%;
-}
-
-/* ===== 2. NAVIGATION BAR ===== */
+/* ===== NAVBAR ===== */
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: white;
-    position: relative;
-    z-index: 1000;
-    height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+  position: relative;
+  z-index: 1000;
+  height: 70px;
 }
 
 .logo img {
-    height: 50px !important;
-    width: auto !important;
+  height: 50px;
+  width: auto;
 }
 
-/* Hamburger button */
 .hamburger {
-    display: none;
-    font-size: 30px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: blue;
+  display: none;
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: blue;
 }
 
-/* Menu links */
 .menu {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-}
-
-.menu li {
-    list-style: none;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
 .menu li a {
-    text-decoration: none;
-    color: blue;
-    font-weight: bold;
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
 }
 
-/* Dropdown (desktop hover) */
 .dropdown {
-    position: relative;
+  position: relative;
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    min-width: 180px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-    list-style: none;
-    padding: 10px 0;
-    z-index: 2000;
-    border-radius: 8px;
-}
-
-.dropdown-content li a {
-    padding: 12px 20px;
-    color: #333;
-    display: block;
-    font-weight: normal;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+  padding: 10px 0;
+  border-radius: 8px;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
-/* ===== 3. MOBILE & HAMBURGER MENU ===== */
+/* ===== MOBILE ===== */
 @media screen and (max-width: 950px) {
-    /* Show hamburger button */
-    .hamburger {
-        display: block;
-    }
+  .hamburger { display: block; }
 
-    /* Mobile menu (hidden by default) */
-    .menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        border-top: 1px solid #ddd;
-        padding-bottom: 20px;
-        z-index: 1500;
-    }
-
-    /* When active, show menu */
-    .menu.active {
-        display: flex;
-    }
-
-    /* Dropdowns inside mobile menu */
-    .dropdown-content {
-        position: relative !important;
-        display: none !important;
-        width: 90% !important;
-        margin: 10px auto !important;
-        background-color: #f9f9f9 !important;
-        border-radius: 12px !important;
-        box-shadow: inset 0 2px 5px rgba(0,0,0,0.05) !important;
-        padding: 5px 0 !important;
-    }
-
-    .dropdown.open .dropdown-content {
-        display: block !important;
-    }
-
-    .menu li {
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-    }
-}
-
-/* ===== 4. MONTH CALENDAR TOGGLE ===== */
-.month-table {
+  .menu {
     display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
     width: 100%;
-    border-collapse: collapse;
-    border: 3px solid black;
-    margin-bottom: 20px;
+    background-color: white;
+    border-top: 1px solid #ddd;
+    padding-bottom: 20px;
+  }
+
+  .menu.active { display: flex; }
+
+  .dropdown-content {
+    position: relative !important;
+    display: none !important;
+    width: 90% !important;
+    margin: 10px auto;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    padding: 5px 0;
+  }
+
+  .dropdown.open .dropdown-content {
+    display: block !important;
+  }
+
+  .menu li { width: 100%; text-align: center; padding: 10px 0; }
 }
 
-.month-table th {
-    border: 2px solid black;
-    background-color: #ddd;
-    padding: 10px;
-}
-
-.month-table td {
-    border: 2px solid black;
-    padding: 10px;
-}
-
+/* ===== CALENDAR ===== */
+.month-table { display: none; width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+.month-table th, .month-table td { border: 2px solid black; padding: 10px; }
 .month-toggle {
-    width: 100%;
-    padding: 12px;
-    background-color: blue;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
+  width: 100%; padding: 12px;
+  background-color: blue; color: white;
+  border: none; cursor: pointer; font-size: 16px; margin-top: 10px;
 }
+.month-toggle:hover { background-color: rgb(196,196,0); }
 
-.month-toggle:hover {
-    background-color: rgb(196, 196, 0);
-}
-
-/* Show calendar when .show class is applied */
-.month-table.show {
-    display: table;
-}
+.month-table.show { display: table; }
