@@ -239,8 +239,9 @@ button {
     margin-top: 20px; /* 🔹 add spacing below the heading/logo */
 }
 .logo1 {
-   max-width: 50px;
-    height: auto;
+   max-height: 50px;
+    width: auto;
+    display:block
 }
 
 /* ===== LOCATION (REPLACED TABLE) ===== */
