@@ -1,59 +1,77 @@
 // ----------------------------
 // NAVBAR
 // ----------------------------
-// 1. Listen for the Click on the search button (using delegation)
-document.addEventListener('click', (e) => {
-    // Check if the clicked element is the search button
-    if (e.target && e.target.id === 'searchButton') {
-        const searchBox = document.getElementById('searchBox');
-        
-        if (searchBox.style.display === 'none' || searchBox.style.display === '') {
-            searchBox.style.display = 'inline-block';
-            searchBox.focus(); // Put the cursor in the box immediately
-        } else {
-            // If it's already open and has text, run the search
-            if (searchBox.value.trim() !== "") {
-                runMySearch(searchBox.value);
-            } else {
-                searchBox.style.display = 'none';
-            }
-        }
-    }
-});
+function initNavbar() {
+  const nav = document.querySelector('nav');
+  if (!nav) return false; 
 
-// 2. Listen for the "Enter" key inside the search box
-document.addEventListener('keypress', (e) => {
-    if (e.target && e.target.id === 'searchBox') {
-        if (e.key === 'Enter') {
-            runMySearch(e.target.value);
-        }
-    }
-});
+  const hamburger = nav.querySelector('.hamburger');
+  const menu = nav.querySelector('.menu');
+  const searchButton = nav.querySelector('#searchButton');
+  const searchBox = nav.querySelector('#searchBox');
 
-// 3. The function that actually does the work
-function runMySearch(query) {
-    const searchTerm = query.toLowerCase().trim();
-    console.log("Searching for:", searchTerm);
-
-    // This part filters your calendar months automatically
-    const months = document.querySelectorAll('.month');
-    let foundAny = false;
-
-    months.forEach(month => {
-        const text = month.innerText.toLowerCase();
-        if (text.includes(searchTerm)) {
-            month.style.display = 'block';
-            foundAny = true;
-        } else {
-            month.style.display = 'none';
-        }
+  // 1. Mobile Hamburger Toggle
+  if (hamburger && menu) {
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('active');
     });
 
-    if (!foundAny) {
-        alert("Nothing found for: " + query);
-    }
+    nav.querySelectorAll('.dropdown > a').forEach(link => {
+      link.addEventListener('click', function(e){
+        if (window.innerWidth <= 950) {
+          e.preventDefault();
+          this.parentElement.classList.toggle('open');
+        }
+      });
+    });
+  }
+
+  // 2. SEARCH LOGIC (Add this part!)
+  if (searchButton && searchBox) {
+    searchButton.addEventListener('click', () => {
+      if (searchBox.style.display === 'none' || searchBox.style.display === '') {
+        searchBox.style.display = 'inline-block';
+        searchBox.focus(); // Jump cursor into the box
+      } else {
+        // Perform search if there is text, otherwise hide it
+        if (searchBox.value.trim() !== "") {
+          handleSearch(searchBox.value);
+        } else {
+          searchBox.style.display = 'none';
+        }
+      }
+    });
+
+    // Handle pressing "Enter" in the search box
+    searchBox.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        handleSearch(searchBox.value);
+      }
+    });
+  }
+
+  return true;
 }
 
+// Helper function to actually run the search
+function handleSearch(query) {
+  console.log("Searching for:", query);
+  const term = query.toLowerCase().trim();
+  
+  // Example: Filter the calendar months
+  const months = document.querySelectorAll('.month');
+  months.forEach(month => {
+    const text = month.innerText.toLowerCase();
+    month.style.display = text.includes(term) ? 'block' : 'none';
+  });
+}
+
+// Your existing retry logic remains the same
+if (!initNavbar()) {
+  const interval = setInterval(() => {
+    if (initNavbar()) clearInterval(interval);
+  }, 100);
+}
 
 
 // ----------------------------
