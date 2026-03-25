@@ -226,14 +226,13 @@ button {
 
 /* Tables hidden by default */
 .month-table {
-  display: none;
-  /*width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;*/
+  display: none; /* This hides it initially */
+  width: 100%;
 }
 
+/* This is the magic class the JS adds/removes */
 .month-table.show {
-  display: table;
+  display: table !important; 
 }
 
 /* Table styling */
