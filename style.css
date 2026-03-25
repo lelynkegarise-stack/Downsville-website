@@ -83,6 +83,35 @@ nav {
 }
 
 .dropdown:hover .dropdown-content { display: block; }
+/* Container for the search elements */
+#navSearchContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+/* The Search Button (Icon) */
+#searchButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: blue; /* Matches your menu color */
+    padding: 5px;
+}
+
+/* The Search Input Box */
+#searchBox {
+    padding: 5px 10px;
+    border: 1px solid blue;
+    border-radius: 20px;
+    outline: none;
+    width: 150px; /* Give it a specific width */
+    font-size: 14px;
+    background-color: white;
+    color: #333;
+}
 
 /* ==========================
    3. INTRO SECTION
