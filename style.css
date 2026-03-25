@@ -228,6 +228,7 @@ button {
 .month-table {
   display: none; /* This hides it initially */
   width: 100%;
+border-collapse: collapse;
 }
 
 /* This is the magic class the JS adds/removes */
