@@ -285,6 +285,35 @@ border-collapse: collapse;
 .month-table td a:hover {
   text-decoration: underline;
 }
+/* ==========================
+   Events
+   ========================== */
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  width: 45%;
+  text-align: center;
+  height: 100%;
+}
+
+.right {
+  width: 45%;
+  text-align: center;
+}
+p{
+    text-align:center;
+}
+h4{
+    text-align:center;
+}
+h1{
+    text-align: center;
+}
+
 
 /* ==========================
    8. MOBILE & RESPONSIVE
