@@ -36,28 +36,24 @@ if (!initNavbar()) {
 // ----------------------------
 // 2️⃣ CALENDAR TOGGLE
 // ----------------------------
-function initCalendar() {
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("months-container");
+  const months = Array.from(document.querySelectorAll(".month"));
+
+  // 1. Sort months first
+  months.sort((a, b) => {
+    return new Date(a.dataset.month) - new Date(b.dataset.month);
+  });
+  months.forEach(month => container.appendChild(month));
+
+  // 2. Add toggle logic to the buttons
   document.querySelectorAll(".month-toggle").forEach(button => {
-    button.addEventListener("click", () => {
-      const table = button.nextElementSibling;
-      if (table) table.classList.toggle("show");
+    button.addEventListener("click", function() {
+      // Find the table that is right after this button
+      const table = this.nextElementSibling;
+      if (table) {
+        table.classList.toggle("show");
+      }
     });
   });
-
-  // Optional: sort months by data-month
-  const container = document.getElementById("months-container");
-  if (container) {
-    const months = Array.from(container.querySelectorAll(".month"));
-    months.sort((a, b) => {
-      const dateA = new Date(a.dataset.month);
-      const dateB = new Date(b.dataset.month);
-      return dateA - dateB;
-    });
-    months.forEach(month => container.appendChild(month));
-  }
-}
-
-// Run calendar code when page fully loads
-window.addEventListener("load", () => {
-  initCalendar();
 });
