@@ -36,39 +36,31 @@ if (!initNavbar()) {
 // ----------------------------
 // 2️⃣ CALENDAR TOGGLE
 // ----------------------------
-function initCalendar() {
+document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("months-container");
-  if (!container) return;
-
-  // 1. Sort the months first
-  const months = Array.from(container.querySelectorAll(".month"));
-  months.sort((a, b) => {
-    const dateA = new Date(a.getAttribute('data-month'));
-    const dateB = new Date(b.getAttribute('data-month'));
-    return dateA - dateB;
-  });
   
-  // Re-append them in order
-  months.forEach(month => container.appendChild(month));
+  if (!container) {
+    console.error("Could not find the months-container div!");
+    return;
+  }
 
-  // 2. Single click listener for the whole container (Better Performance)
+  // 1. Setup the Click Listener
   container.addEventListener("click", (e) => {
-    // Check if what we clicked was a toggle button
+    // Check if the clicked element is the button
     if (e.target.classList.contains("month-toggle")) {
-      const button = e.target;
-      const table = button.nextElementSibling;
+      console.log("Button clicked:", e.target.innerText);
       
+      const table = e.target.nextElementSibling;
       if (table) {
-        // This toggles the 'show' class we defined in your CSS
         table.classList.toggle("show");
       }
     }
   });
-}
 
-// Ensure it runs after the DOM is fully ready
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initCalendar);
-} else {
-  initCalendar();
-}
+  // 2. Sort the Months (Optional but helpful)
+  const months = Array.from(container.querySelectorAll(".month"));
+  months.sort((a, b) => {
+    return new Date(a.dataset.month) - new Date(b.dataset.month);
+  });
+  months.forEach(month => container.appendChild(month));
+});
