@@ -1,67 +1,60 @@
 // ----------------------------
-// NAVBAR
+// navbar
 // ----------------------------
-alert("Search script is loaded!");
-console.log("The script is running!"); //check
 function initNavbar() {
-  const nav = document.querySelector('nav');
-  if (!nav) return false; 
+    const nav = document.querySelector('nav');
+    if (!nav) return false; 
 
-  const hamburger = nav.querySelector('.hamburger');
-  const menu = nav.querySelector('.menu');
-  const searchButton = nav.querySelector('#searchButton');
-  const searchBox = nav.querySelector('#searchBox');
+    const hamburger = nav.querySelector('.hamburger');
+    const menu = nav.querySelector('.menu');
+    const searchButton = nav.querySelector('#searchButton');
+    const searchBox = nav.querySelector('#searchBox');
 
-  // 1. Mobile Hamburger Toggle
-  if (hamburger && menu) {
-    hamburger.addEventListener('click', () => {
-      menu.classList.toggle('active');
-    });
+    // 1. Mobile Hamburger Toggle
+    if (hamburger && menu) {
+        hamburger.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
 
-    nav.querySelectorAll('.dropdown > a').forEach(link => {
-      link.addEventListener('click', function(e){
-        if (window.innerWidth <= 950) {
-          e.preventDefault();
-          this.parentElement.classList.toggle('open');
-        }
-      });
-    });
-  }
-
-document.addEventListener('click', function (e) {
-    // If they clicked the search icon
-    if (e.target.id === 'searchButton') {
-        const box = document.getElementById('searchBox');
-        if (!box) return;
-
-        // Toggle visibility
-        if (box.style.display === 'none' || box.style.display === '') {
-            box.style.display = 'inline-block';
-            box.focus();
-        } else if (box.value.trim() !== "") {
-            // If it's already open and has text, search!
-            applySearchFilter(box.value);
-        } else {
-            box.style.display = 'none';
-        }
+        nav.querySelectorAll('.dropdown > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 950) {
+                    e.preventDefault();
+                    this.parentElement.classList.toggle('open');
+                }
+            });
+        });
     }
-});
 
-document.addEventListener('keydown', function (e) {
-    // If they press Enter while typing in the search box
-    if (e.target.id === 'searchBox' && e.key === 'Enter') {
-        applySearchFilter(e.target.value);
+    // 2. Search Logic (Moved inside to ensure IDs exist)
+    if (searchButton && searchBox) {
+        searchButton.addEventListener('click', function() {
+            if (searchBox.style.display === 'none' || searchBox.style.display === '') {
+                searchBox.style.display = 'inline-block';
+                searchBox.focus();
+            } else if (searchBox.value.trim() !== "") {
+                applySearchFilter(searchBox.value);
+            } else {
+                searchBox.style.display = 'none';
+            }
+        });
+
+        searchBox.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                applySearchFilter(this.value);
+            }
+        });
     }
-});
+
+    return true; // Tells the interval to stop retrying
+} // <--- THIS WAS THE MISSING BRACKET
 
 function applySearchFilter(query) {
     const term = query.toLowerCase().trim();
     const months = document.querySelectorAll('.month');
 
     months.forEach(month => {
-        // Look at all the text inside the month (Name + Table Rows)
         const content = month.innerText.toLowerCase();
-        
         if (content.includes(term)) {
             month.style.display = 'block';
         } else {
@@ -69,14 +62,14 @@ function applySearchFilter(query) {
         }
     });
 }
-// Your existing retry logic remains the same
-if (!initNavbar()) {
-  const interval = setInterval(() => {
-    if (initNavbar()) clearInterval(interval);
-  }, 100);
-}
 
-
+// Retry logic to handle the fetch delay
+const interval = setInterval(() => {
+    if (initNavbar()) {
+        clearInterval(interval);
+        console.log("Navbar and Search initialized!");
+    }
+}, 100);
 // ----------------------------
 //  CALENDAR TOGGLE
 // ----------------------------
