@@ -26,58 +26,46 @@ function initNavbar() {
     });
   }
 
-// 1. Listen for ALL clicks on the page
 document.addEventListener('click', function (e) {
-  // Check if we clicked the search button
-  if (e.target && e.target.id === 'searchButton') {
-    const searchBox = document.getElementById('searchBox');
-    if (!searchBox) return;
+    // If they clicked the search icon
+    if (e.target.id === 'searchButton') {
+        const box = document.getElementById('searchBox');
+        if (!box) return;
 
-    if (searchBox.style.display === 'none' || searchBox.style.display === '') {
-      searchBox.style.display = 'inline-block';
-      searchBox.focus();
-    } else {
-      // If box is open and has text, search. Otherwise, hide it.
-      if (searchBox.value.trim() !== "") {
-        executeSearch(searchBox.value);
-      } else {
-        searchBox.style.display = 'none';
-      }
+        // Toggle visibility
+        if (box.style.display === 'none' || box.style.display === '') {
+            box.style.display = 'inline-block';
+            box.focus();
+        } else if (box.value.trim() !== "") {
+            // If it's already open and has text, search!
+            applySearchFilter(box.value);
+        } else {
+            box.style.display = 'none';
+        }
     }
-  }
 });
 
-// 2. Listen for the "Enter" key globally
-document.addEventListener('keypress', function (e) {
-  if (e.target && e.target.id === 'searchBox') {
-    if (e.key === 'Enter') {
-      executeSearch(e.target.value);
+document.addEventListener('keydown', function (e) {
+    // If they press Enter while typing in the search box
+    if (e.target.id === 'searchBox' && e.key === 'Enter') {
+        applySearchFilter(e.target.value);
     }
-  }
 });
 
-// 2. The Search Logic
-function executeSearch(query) {
-  const term = query.toLowerCase().trim();
-  console.log("Searching for:", term);
+function applySearchFilter(query) {
+    const term = query.toLowerCase().trim();
+    const months = document.querySelectorAll('.month');
 
-  // We look for the months. 
-  // IMPORTANT: Make sure your month divs actually have the class "month"
-  const months = document.querySelectorAll('.month');
-  
-  if (months.length === 0) {
-    console.error("No elements with class 'month' found on this page.");
-    return;
-  }
-
-  months.forEach(month => {
-    const text = month.innerText.toLowerCase();
-    if (text.includes(term)) {
-      month.style.display = 'block'; // Show match
-    } else {
-      month.style.display = 'none'; // Hide non-match
-    }
-  });
+    months.forEach(month => {
+        // Look at all the text inside the month (Name + Table Rows)
+        const content = month.innerText.toLowerCase();
+        
+        if (content.includes(term)) {
+            month.style.display = 'block';
+        } else {
+            month.style.display = 'none';
+        }
+    });
 }
 // Your existing retry logic remains the same
 if (!initNavbar()) {
