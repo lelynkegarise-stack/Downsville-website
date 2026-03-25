@@ -12,58 +12,57 @@ function initNavbar() {
 
     // 1. Mobile Hamburger Toggle
     if (hamburger && menu) {
-        hamburger.addEventListener('click', () => {
-            menu.classList.toggle('active');
-        });
+        hamburger.onclick = () => menu.classList.toggle('active');
+    }
 
-        nav.querySelectorAll('.dropdown > a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (window.innerWidth <= 950) {
-                    e.preventDefault();
-                    this.parentElement.classList.toggle('open');
-                }
-            });
-        });
+    // 2. Search Toggle (Inside the init so it finds the buttons)
+    if (searchButton && searchBox) {
+        searchButton.onclick = () => {
+            if (searchBox.style.display === 'none' || searchBox.style.display === '') {
+                searchBox.style.display = 'inline-block';
+                searchBox.focus();
+            } else {
+                executeCalendarSearch(searchBox.value);
+            }
+        };
+
+        searchBox.onkeydown = (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeCalendarSearch(searchBox.value);
+            }
+        };
     }
     return true;
 }
 
-    // 2. Search Logic (Moved inside to ensure IDs exist)
-document.addEventListener('click', function (e) {
-    // Check if we clicked the search button OR the magnifying glass icon inside it
-    if (e.target.id === 'searchButton' || e.target.closest('#searchButton')) {
-        const box = document.getElementById('searchBox');
-        if (!box) return;
-
-        // Toggle visibility
-        if (box.style.display === 'none' || box.style.display === '') {
-            box.style.display = 'inline-block';
-            box.focus();
-        } else if (box.value.trim() !== "") {
-            executeCalendarSearch(box.value);
-        } else {
-            box.style.display = 'none';
-        }
-    }
-});
-
-// 2. Listen for ENTER key inside the search box
-document.addEventListener('keydown', function (e) {
-    if (e.target.id === 'searchBox' && e.key === 'Enter') {
-        executeCalendarSearch(e.target.value);
-    }
-});
-
-// 3. The Search Function
+    /// 3. The New Search Function (The one you just wrote)
 function executeCalendarSearch(query) {
     const term = query.toLowerCase().trim();
     const months = document.querySelectorAll('.month');
 
+    console.log("Searching for:", term);
+
     months.forEach(month => {
         const content = month.innerText.toLowerCase();
-        // If the month contains the search word, show it. Otherwise, hide it.
-        month.style.display = content.includes(term) ? 'block' : 'none';
+        
+        if (content.includes(term)) {
+            month.style.display = 'block';
+            
+            // Automatically opens the table if a match is found
+            const table = month.querySelector('table');
+            if (table && term !== "") {
+                table.style.display = "table";
+            }
+        } else {
+            month.style.display = 'none';
+        }
     });
+
+    // Reset if search is empty
+    if (term === "") {
+        months.forEach(m => m.style.display = 'block');
+    }
 }
 
 // Retry logic to handle the fetch delay
