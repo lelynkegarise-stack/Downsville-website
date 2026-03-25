@@ -1,5 +1,5 @@
 // ----------------------------
-// 1️⃣ NAVBAR (optional)
+// NAVBAR
 // ----------------------------
 function initNavbar() {
   const nav = document.querySelector('nav');
@@ -34,7 +34,21 @@ if (!initNavbar()) {
 }
 
 // ----------------------------
-// 2️⃣ CALENDAR TOGGLE
+// search bar
+// ----------------------------
+
+    if (searchButton && searchBox) {
+      searchButton.addEventListener("click", () => {
+        const isHidden = searchBox.style.display === "none";
+        searchBox.style.display = isHidden ? "inline-block" : "none";
+        if (isHidden) searchBox.focus();
+      });
+    }
+  })
+  .catch(err => console.error("Nav load error:", err));
+
+// ----------------------------
+//  CALENDAR TOGGLE
 // ----------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
