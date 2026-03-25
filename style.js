@@ -27,39 +27,40 @@ function initNavbar() {
     }
 
     // 2. Search Logic (Moved inside to ensure IDs exist)
-    if (searchButton && searchBox) {
-        searchButton.addEventListener('click', function() {
-            if (searchBox.style.display === 'none' || searchBox.style.display === '') {
-                searchBox.style.display = 'inline-block';
-                searchBox.focus();
-            } else if (searchBox.value.trim() !== "") {
-                applySearchFilter(searchBox.value);
-            } else {
-                searchBox.style.display = 'none';
-            }
-        });
+document.addEventListener('click', function (e) {
+    // Check if we clicked the search button OR the magnifying glass icon inside it
+    if (e.target.id === 'searchButton' || e.target.closest('#searchButton')) {
+        const box = document.getElementById('searchBox');
+        if (!box) return;
 
-        searchBox.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                applySearchFilter(this.value);
-            }
-        });
+        // Toggle visibility
+        if (box.style.display === 'none' || box.style.display === '') {
+            box.style.display = 'inline-block';
+            box.focus();
+        } else if (box.value.trim() !== "") {
+            executeCalendarSearch(box.value);
+        } else {
+            box.style.display = 'none';
+        }
     }
+});
 
-    return true; // Tells the interval to stop retrying
-} // <--- THIS WAS THE MISSING BRACKET
+// 2. Listen for ENTER key inside the search box
+document.addEventListener('keydown', function (e) {
+    if (e.target.id === 'searchBox' && e.key === 'Enter') {
+        executeCalendarSearch(e.target.value);
+    }
+});
 
-function applySearchFilter(query) {
+// 3. The Search Function
+function executeCalendarSearch(query) {
     const term = query.toLowerCase().trim();
     const months = document.querySelectorAll('.month');
 
     months.forEach(month => {
         const content = month.innerText.toLowerCase();
-        if (content.includes(term)) {
-            month.style.display = 'block';
-        } else {
-            month.style.display = 'none';
-        }
+        // If the month contains the search word, show it. Otherwise, hide it.
+        month.style.display = content.includes(term) ? 'block' : 'none';
     });
 }
 
