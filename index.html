@@ -11,26 +11,19 @@
 <body>
 
   <!-- Navbar -->
-  <div id="navbar"></div>
+ <div id="navbar"></div>
 
-  <script>
+<script src="search.js"></script>
+
+<script>
     fetch("navbar.html")
-      .then(response => response.text())
-      if (!response.ok) throw new Error("Navbar file not found!");
-      return response.text();
-    })
-      .then(data => {
-        document.getElementById("navbar").innerHTML = data;
-        console.log("Navbar HTML loaded successfully.");
-        const script = document.createElement("script");
-        script.src = "search.js"+ Date.now();;
-        document.body.appendChild(script);
-        console.log("Attempting to load search.js now...");
-        .catch(error => {
-       console.error("Error:", error);
-    });
-      });
-  </script>
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("navbar").innerHTML = data;
+            console.log("Navbar loaded!");
+        })
+        .catch(err => console.error("Failed to load navbar:", err));
+</script>
 
   <!-- ===== Intro Section ===== -->
   <div class="intro">
