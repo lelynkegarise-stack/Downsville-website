@@ -16,12 +16,19 @@
   <script>
     fetch("navbar.html")
       .then(response => response.text())
+      if (!response.ok) throw new Error("Navbar file not found!");
+      return response.text();
+    })
       .then(data => {
         document.getElementById("navbar").innerHTML = data;
-
+        console.log("Navbar HTML loaded successfully.");
         const script = document.createElement("script");
-        script.src = "search.js";
+        script.src = "search.js"+ Date.now();;
         document.body.appendChild(script);
+        console.log("Attempting to load search.js now...");
+        .catch(error => {
+       console.error("Error:", error);
+    });
       });
   </script>
 
