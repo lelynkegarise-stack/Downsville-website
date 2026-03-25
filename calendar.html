@@ -306,32 +306,6 @@ fetch("navbar.html")
   </table>
 </div>
 </div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  // Dropdown toggle
-  document.querySelectorAll(".month-toggle").forEach(button => {
-    button.addEventListener("click", () => {
-      const table = button.nextElementSibling;
-      table.style.display = table.style.display === "table" ? "none" : "table";
-    });
-  });
-
-  // Sort months
-  const container = document.getElementById("months-container");
-  const months = Array.from(document.querySelectorAll(".month"));
-
-  months.sort((a, b) => {
-    const dateA = new Date(a.dataset.month);
-    const dateB = new Date(b.dataset.month);
-    return dateA - dateB;
-  });
-
-  months.forEach(month => container.appendChild(month));
-
-});
-</script>
 <div id="footer"></div>
 <script>
 fetch("footer.html")
@@ -340,5 +314,6 @@ fetch("footer.html")
     document.getElementById("footer").innerHTML = data;
   });
 </script>
+<script src="calendar.js"></script>
 </body>
 </html>
