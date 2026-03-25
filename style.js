@@ -39,24 +39,22 @@ if (!initNavbar()) {
 
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("months-container");
+    
+    if (!container) return; // Safety check
 
-    // Click logic using delegation
+    // 1. Sorting Logic
+    const months = Array.from(container.querySelectorAll(".month"));
+    months.sort((a, b) => new Date(a.dataset.month) - new Date(b.dataset.month));
+    months.forEach(month => container.appendChild(month));
+
+    // 2. Click Logic (Dropdown)
     container.addEventListener("click", (e) => {
         if (e.target.classList.contains("month-toggle")) {
             const table = e.target.nextElementSibling;
             if (table) {
-                // If it's hidden or not set, show it. Otherwise hide it.
-                if (table.style.display === "table") {
-                    table.style.display = "none";
-                } else {
-                    table.style.display = "table";
-                }
+                // Toggles between hidden and visible
+                table.style.display = (table.style.display === "table") ? "none" : "table";
             }
         }
     });
-
-    // Sort logic
-    const months = Array.from(container.querySelectorAll(".month"));
-    months.sort((a, b) => new Date(a.dataset.month) - new Date(b.dataset.month));
-    months.forEach(month => container.appendChild(month));
 });
