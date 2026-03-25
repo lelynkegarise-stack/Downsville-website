@@ -36,24 +36,39 @@ if (!initNavbar()) {
 // ----------------------------
 // 2️⃣ CALENDAR TOGGLE
 // ----------------------------
-document.addEventListener("DOMContentLoaded", () => {
+function initCalendar() {
   const container = document.getElementById("months-container");
-  const months = Array.from(document.querySelectorAll(".month"));
+  if (!container) return;
 
-  // 1. Sort months first
+  // 1. Sort the months first
+  const months = Array.from(container.querySelectorAll(".month"));
   months.sort((a, b) => {
-    return new Date(a.dataset.month) - new Date(b.dataset.month);
+    const dateA = new Date(a.getAttribute('data-month'));
+    const dateB = new Date(b.getAttribute('data-month'));
+    return dateA - dateB;
   });
+  
+  // Re-append them in order
   months.forEach(month => container.appendChild(month));
 
-  // 2. Add toggle logic to the buttons
-  document.querySelectorAll(".month-toggle").forEach(button => {
-    button.addEventListener("click", function() {
-      // Find the table that is right after this button
-      const table = this.nextElementSibling;
+  // 2. Single click listener for the whole container (Better Performance)
+  container.addEventListener("click", (e) => {
+    // Check if what we clicked was a toggle button
+    if (e.target.classList.contains("month-toggle")) {
+      const button = e.target;
+      const table = button.nextElementSibling;
+      
       if (table) {
+        // This toggles the 'show' class we defined in your CSS
         table.classList.toggle("show");
       }
-    });
+    }
   });
-});
+}
+
+// Ensure it runs after the DOM is fully ready
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initCalendar);
+} else {
+  initCalendar();
+}
