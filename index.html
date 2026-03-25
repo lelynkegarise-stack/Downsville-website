@@ -11,22 +11,19 @@
 <body>
 
   <!-- Navbar -->
- <div id="navbar"></div>
+<div id="navbar"></div>
 <script>
-    fetch("navbar.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("navbar").innerHTML = data;
-            console.log("Navbar loaded!");
-        })
-      const script = document.createElement("script");
-            script.src = "style.js";
-            document.body.appendChild(script);
-            console.log("Search logic attached to the new HTML.");
-        })
-        .catch(err => console.error("Failed to load navbar:", err));
-</script>
 
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+      const script = document.createElement("script");
+    script.src = "search.js";
+    document.body.appendChild(script);
+  });
+
+</script>
   <!-- ===== Intro Section ===== -->
   <div class="intro">
     <h1>
