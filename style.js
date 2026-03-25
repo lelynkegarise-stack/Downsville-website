@@ -1,30 +1,6 @@
 // ----------------------------
 // NAVBAR
 // ----------------------------
-function initNavbar() {
-  const nav = document.querySelector('nav');
-  if (!nav) return false;
-
-  const hamburger = nav.querySelector('.hamburger');
-  const menu = nav.querySelector('.menu');
-
-  if (hamburger && menu) {
-    hamburger.addEventListener('click', () => {
-      menu.classList.toggle('active');
-    });
-
-    nav.querySelectorAll('.dropdown > a').forEach(link => {
-      link.addEventListener('click', function(e){
-        if (window.innerWidth <= 950) {
-          e.preventDefault();
-          this.parentElement.classList.toggle('open');
-        }
-      });
-    });
-  }
-
-  return true;
-}
 // 1. Listen for the Click on the search button (using delegation)
 document.addEventListener('click', (e) => {
     // Check if the clicked element is the search button
@@ -74,30 +50,11 @@ function runMySearch(query) {
     });
 
     if (!foundAny) {
-        alert("No events found for: " + query);
+        alert("Nothing found for: " + query);
     }
 }
 
-// Retry every 100ms in case navbar is dynamically loaded
-if (!initNavbar()) {
-  const interval = setInterval(() => {
-    if (initNavbar()) clearInterval(interval);
-  }, 100);
-}
 
-// ----------------------------
-// search bar
-// ----------------------------
-
-    if (searchButton && searchBox) {
-      searchButton.addEventListener("click", () => {
-        const isHidden = searchBox.style.display === "none";
-        searchBox.style.display = isHidden ? "inline-block" : "none";
-        if (isHidden) searchBox.focus();
-      });
-    }
-  })
-  .catch(err => console.error("Nav load error:", err));
 
 // ----------------------------
 //  CALENDAR TOGGLE
