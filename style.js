@@ -1,6 +1,8 @@
 // ----------------------------
 // NAVBAR
 // ----------------------------
+alert("Search script is loaded!");
+console.log("The script is running!"); //check
 function initNavbar() {
   const nav = document.querySelector('nav');
   if (!nav) return false; 
