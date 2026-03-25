@@ -36,31 +36,27 @@ if (!initNavbar()) {
 // ----------------------------
 // 2️⃣ CALENDAR TOGGLE
 // ----------------------------
+
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("months-container");
-  
-  if (!container) {
-    console.error("Could not find the months-container div!");
-    return;
-  }
+    const container = document.getElementById("months-container");
 
-  // 1. Setup the Click Listener
-  container.addEventListener("click", (e) => {
-    // Check if the clicked element is the button
-    if (e.target.classList.contains("month-toggle")) {
-      console.log("Button clicked:", e.target.innerText);
-      
-      const table = e.target.nextElementSibling;
-      if (table) {
-        table.classList.toggle("show");
-      }
-    }
-  });
+    // Click logic using delegation
+    container.addEventListener("click", (e) => {
+        if (e.target.classList.contains("month-toggle")) {
+            const table = e.target.nextElementSibling;
+            if (table) {
+                // If it's hidden or not set, show it. Otherwise hide it.
+                if (table.style.display === "table") {
+                    table.style.display = "none";
+                } else {
+                    table.style.display = "table";
+                }
+            }
+        }
+    });
 
-  // 2. Sort the Months (Optional but helpful)
-  const months = Array.from(container.querySelectorAll(".month"));
-  months.sort((a, b) => {
-    return new Date(a.dataset.month) - new Date(b.dataset.month);
-  });
-  months.forEach(month => container.appendChild(month));
+    // Sort logic
+    const months = Array.from(container.querySelectorAll(".month"));
+    months.sort((a, b) => new Date(a.dataset.month) - new Date(b.dataset.month));
+    months.forEach(month => container.appendChild(month));
 });
