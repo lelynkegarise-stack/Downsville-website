@@ -25,6 +25,58 @@ function initNavbar() {
 
   return true;
 }
+// 1. Listen for the Click on the search button (using delegation)
+document.addEventListener('click', (e) => {
+    // Check if the clicked element is the search button
+    if (e.target && e.target.id === 'searchButton') {
+        const searchBox = document.getElementById('searchBox');
+        
+        if (searchBox.style.display === 'none' || searchBox.style.display === '') {
+            searchBox.style.display = 'inline-block';
+            searchBox.focus(); // Put the cursor in the box immediately
+        } else {
+            // If it's already open and has text, run the search
+            if (searchBox.value.trim() !== "") {
+                runMySearch(searchBox.value);
+            } else {
+                searchBox.style.display = 'none';
+            }
+        }
+    }
+});
+
+// 2. Listen for the "Enter" key inside the search box
+document.addEventListener('keypress', (e) => {
+    if (e.target && e.target.id === 'searchBox') {
+        if (e.key === 'Enter') {
+            runMySearch(e.target.value);
+        }
+    }
+});
+
+// 3. The function that actually does the work
+function runMySearch(query) {
+    const searchTerm = query.toLowerCase().trim();
+    console.log("Searching for:", searchTerm);
+
+    // This part filters your calendar months automatically
+    const months = document.querySelectorAll('.month');
+    let foundAny = false;
+
+    months.forEach(month => {
+        const text = month.innerText.toLowerCase();
+        if (text.includes(searchTerm)) {
+            month.style.display = 'block';
+            foundAny = true;
+        } else {
+            month.style.display = 'none';
+        }
+    });
+
+    if (!foundAny) {
+        alert("No events found for: " + query);
+    }
+}
 
 // Retry every 100ms in case navbar is dynamically loaded
 if (!initNavbar()) {
