@@ -26,46 +26,59 @@ function initNavbar() {
     });
   }
 
-  // 2. SEARCH LOGIC (Add this part!)
-  if (searchButton && searchBox) {
-    searchButton.addEventListener('click', () => {
-      if (searchBox.style.display === 'none' || searchBox.style.display === '') {
-        searchBox.style.display = 'inline-block';
-        searchBox.focus(); // Jump cursor into the box
-      } else {
-        // Perform search if there is text, otherwise hide it
-        if (searchBox.value.trim() !== "") {
-          handleSearch(searchBox.value);
-        } else {
-          searchBox.style.display = 'none';
-        }
-      }
-    });
+// 1. Listen for ALL clicks on the page
+document.addEventListener('click', function (e) {
+  // Check if we clicked the search button
+  if (e.target && e.target.id === 'searchButton') {
+    const searchBox = document.getElementById('searchBox');
+    if (!searchBox) return;
 
-    // Handle pressing "Enter" in the search box
-    searchBox.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        handleSearch(searchBox.value);
+    if (searchBox.style.display === 'none' || searchBox.style.display === '') {
+      searchBox.style.display = 'inline-block';
+      searchBox.focus();
+    } else {
+      // If box is open and has text, search. Otherwise, hide it.
+      if (searchBox.value.trim() !== "") {
+        executeSearch(searchBox.value);
+      } else {
+        searchBox.style.display = 'none';
       }
-    });
+    }
+  }
+});
+
+// 2. Listen for the "Enter" key globally
+document.addEventListener('keypress', function (e) {
+  if (e.target && e.target.id === 'searchBox') {
+    if (e.key === 'Enter') {
+      executeSearch(e.target.value);
+    }
+  }
+});
+
+// 2. The Search Logic
+function executeSearch(query) {
+  const term = query.toLowerCase().trim();
+  console.log("Searching for:", term);
+
+  // We look for the months. 
+  // IMPORTANT: Make sure your month divs actually have the class "month"
+  const months = document.querySelectorAll('.month');
+  
+  if (months.length === 0) {
+    console.error("No elements with class 'month' found on this page.");
+    return;
   }
 
-  return true;
-}
-
-// Helper function to actually run the search
-function handleSearch(query) {
-  console.log("Searching for:", query);
-  const term = query.toLowerCase().trim();
-  
-  // Example: Filter the calendar months
-  const months = document.querySelectorAll('.month');
   months.forEach(month => {
     const text = month.innerText.toLowerCase();
-    month.style.display = text.includes(term) ? 'block' : 'none';
+    if (text.includes(term)) {
+      month.style.display = 'block'; // Show match
+    } else {
+      month.style.display = 'none'; // Hide non-match
+    }
   });
 }
-
 // Your existing retry logic remains the same
 if (!initNavbar()) {
   const interval = setInterval(() => {
