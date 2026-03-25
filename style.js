@@ -25,6 +25,8 @@ function initNavbar() {
             });
         });
     }
+    return true;
+}
 
     // 2. Search Logic (Moved inside to ensure IDs exist)
 document.addEventListener('click', function (e) {
