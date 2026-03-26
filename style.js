@@ -88,29 +88,6 @@ const navInterval = setInterval(() => {
     }
 }, 100);
 
-// ----------------------------
-// 4. CALENDAR TOGGLE (Dropdowns)
-// ----------------------------
-document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("months-container");
-    if (!container) return;
-
-    // Sorting Logic
-    const monthsArray = Array.from(container.querySelectorAll(".month"));
-    monthsArray.sort((a, b) => new Date(a.dataset.month) - new Date(b.dataset.month));
-    monthsArray.forEach(month => container.appendChild(month));
-
-    // Click Logic for the Month Toggles
-    container.addEventListener("click", (e) => {
-        if (e.target.classList.contains("month-toggle")) {
-            const table = e.target.nextElementSibling;
-            if (table) {
-                table.style.display = (table.style.display === "table") ? "none" : "table";
-            }
-        }
-    });
-});}
-
     /// 3. The New Search Function (The one you just wrote)
 function executeCalendarSearch(query) {
     const term = query.toLowerCase().trim();
@@ -153,22 +130,24 @@ const interval = setInterval(() => {
 
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("months-container");
-    
-    if (!container) return; // Safety check
+    if (!container) return;
 
-    // 1. Sorting Logic
-    const months = Array.from(container.querySelectorAll(".month"));
-    months.sort((a, b) => new Date(a.dataset.month) - new Date(b.dataset.month));
-    months.forEach(month => container.appendChild(month));
+    // Sorting Logic
+    const monthsArray = Array.from(container.querySelectorAll(".month"));
+    monthsArray.sort((a, b) => {
+        const valA = a.dataset.month || "";
+        const valB = b.dataset.month || "";
+        return valA.localeCompare(valB);
+    });
+    monthsArray.forEach(month => container.appendChild(month));
 
-    // 2. Click Logic (Dropdown)
+    // Click Logic for the Month Toggles
     container.addEventListener("click", (e) => {
         if (e.target.classList.contains("month-toggle")) {
             const table = e.target.nextElementSibling;
             if (table) {
-                // Toggles between hidden and visible
                 table.style.display = (table.style.display === "table") ? "none" : "table";
             }
         }
     });
-});
+});}
