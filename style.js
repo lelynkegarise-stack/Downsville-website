@@ -127,49 +127,37 @@ const interval = setInterval(() => {
 // ----------------------------
 //  CALENDAR TOGGLE
 // ----------------------------
-const initEventsPage = () => {
+function initEvents() {
     const container = document.getElementById("months-container");
     if (!container) return;
 
-    // 1. Grab everything currently inside the container
-    const title = container.querySelector("h1");
-    const monthsArray = Array.from(container.querySelectorAll(".month"));
-
-    // 2. Sort the array (2026 will come before 2027)
-    monthsArray.sort((a, b) => {
-        const dateA = a.getAttribute('data-month') || "";
-        const dateB = b.getAttribute('data-month') || "";
-        return dateA.localeCompare(dateB);
-    });
-
-    // 3. Clear the container and put them back in the NEW order
-    container.innerHTML = "";
-    if (title) container.appendChild(title);
+    // 1. SORTING LOGIC (Moves 2027 to the bottom)
+    const months = Array.from(container.querySelectorAll(".month"));
     
-    monthsArray.forEach(month => {
-        container.appendChild(month);
-        
-        // 4. Re-hide the tables immediately after putting them back
-        const table = month.querySelector(".month-table");
-        if (table) {
-            table.style.display = "none";
-        }
+    months.sort((a, b) => {
+        const aDate = a.getAttribute('data-month') || "";
+        const bDate = b.getAttribute('data-month') || "";
+        return aDate.localeCompare(bDate);
     });
 
-    // 5. CLICK LOGIC (Event Delegation)
-    // We attach the listener to the 'document' so it never "forgets" the buttons
-    document.addEventListener("click", (e) => {
+    // Physically move them in the browser's memory
+    months.forEach(month => container.appendChild(month));
+
+    // 2. CLICK LOGIC (Matches your CSS .show class)
+    container.onclick = function(e) {
         if (e.target.classList.contains("month-toggle")) {
-            // Find the table that is right next to the button we clicked
+            // Find the table that is right next to the button
             const table = e.target.nextElementSibling;
             
             if (table) {
-                const isHidden = table.style.display === "none" || getComputedStyle(table).display === "none";
-                table.style.display = isHidden ? "table" : "none";
+                // This adds/removes the "show" class you have in your CSS
+                table.classList.toggle("show");
             }
         }
-    });
-};
+    };
+}
 
-// Run everything when the page is fully loaded
-window.addEventListener("load", initEventsPage);
+// Run the script when everything is loaded
+window.addEventListener("load", initEvents);
+// Backup run in case the page is already ready
+initEvents();
