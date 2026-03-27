@@ -132,22 +132,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("months-container");
     if (!container) return;
 
-    // Sorting Logic
+    // 1. Target only the divs with the class 'month'
     const monthsArray = Array.from(container.querySelectorAll(".month"));
-    monthsArray.sort((a, b) => {
-        const valA = a.dataset.month || "";
-        const valB = b.dataset.month || "";
-        return valA.localeCompare(valB);
-    });
-    monthsArray.forEach(month => container.appendChild(month));
 
-    // Click Logic for the Month Toggles
-    container.addEventListener("click", (e) => {
-        if (e.target.classList.contains("month-toggle")) {
-            const table = e.target.nextElementSibling;
-            if (table) {
-                table.style.display = (table.style.display === "table") ? "none" : "table";
-            }
-        }
+    // 2. Enhanced Sorting Logic
+    monthsArray.sort((a, b) => {
+        // .trim() removes any accidental hidden spaces
+        const dateA = a.dataset.month ? a.dataset.month.trim() : "";
+        const dateB = b.dataset.month ? b.dataset.month.trim() : "";
+
+        // Log to console so you can see if the values are being read correctly
+        console.log(`Comparing ${dateA} to ${dateB}`);
+
+        return dateA.localeCompare(dateB);
     });
-});}
+
+    // 3. Re-attach them to the container
+    // This physically moves them in the DOM
+    monthsArray.forEach(month => {
+        container.appendChild(month);
+    });
+});
