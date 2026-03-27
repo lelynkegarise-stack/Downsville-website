@@ -28,7 +28,7 @@ fetch("./navbar.html")
       });
 
       // 3. Search Logic (Enter Key)
-  searchBox.addEventListener("keypress", (e) => {
+searchBox.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         const query = searchBox.value.toLowerCase().trim();
         if (!query) {
@@ -48,7 +48,7 @@ fetch("./navbar.html")
                 if (text.includes(query)) {
                     month.style.display = "block";
                     foundOnPage = true;
-                    // Optional: Open the table so they can see the result
+                    // Automatically open the table so they can see the result
                     const table = month.querySelector(".month-table");
                     if (table) table.classList.add("show");
                 } else {
@@ -56,7 +56,7 @@ fetch("./navbar.html")
                 }
             });
 
-            // If "Rentals" wasn't found on the calendar, check the site-wide JSON
+            // CRITICAL FIX: If "Rentals" wasn't found on this page, search the site-wide JSON
             if (!foundOnPage) {
                 searchInJSON(query);
             }
@@ -81,7 +81,7 @@ function searchInJSON(query) {
                 window.location.href = match.url;
             } else {
                 alert("No results found for '" + query + "'");
-                // Reset calendar so it's not a blank screen
+                // Reset calendar so it's not a blank screen if no results anywhere
                 document.querySelectorAll(".month").forEach(m => m.style.display = "block");
             }
         })
