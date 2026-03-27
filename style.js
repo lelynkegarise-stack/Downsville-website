@@ -127,45 +127,49 @@ const interval = setInterval(() => {
 // ----------------------------
 //  CALENDAR TOGGLE
 // ----------------------------
-const sortMonths = () => {
+const initEventsPage = () => {
     const container = document.getElementById("months-container");
     if (!container) return;
 
-    // 1. Grab the Title (H1) so we can put it back at the top later
+    // 1. Grab everything currently inside the container
     const title = container.querySelector("h1");
-
-    // 2. Get all month divs and turn them into an array
     const monthsArray = Array.from(container.querySelectorAll(".month"));
 
-    // 3. Sort them alphabetically by the data-month string (2026 comes before 2027)
+    // 2. Sort the array (2026 will come before 2027)
     monthsArray.sort((a, b) => {
         const dateA = a.getAttribute('data-month') || "";
         const dateB = b.getAttribute('data-month') || "";
         return dateA.localeCompare(dateB);
     });
 
-    // 4. Wipe the container clean to force a refresh
+    // 3. Clear the container and put them back in the NEW order
     container.innerHTML = "";
-    
-    // 5. Put the Title back first
     if (title) container.appendChild(title);
-
-    // 6. Put the months back in their NEW sorted order
+    
     monthsArray.forEach(month => {
         container.appendChild(month);
+        
+        // 4. Re-hide the tables immediately after putting them back
+        const table = month.querySelector(".month-table");
+        if (table) {
+            table.style.display = "none";
+        }
+    });
+
+    // 5. CLICK LOGIC (Event Delegation)
+    // We attach the listener to the 'document' so it never "forgets" the buttons
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("month-toggle")) {
+            // Find the table that is right next to the button we clicked
+            const table = e.target.nextElementSibling;
+            
+            if (table) {
+                const isHidden = table.style.display === "none" || getComputedStyle(table).display === "none";
+                table.style.display = isHidden ? "table" : "none";
+            }
+        }
     });
 };
 
-// Run the sort when the page loads
-window.addEventListener("load", sortMonths);
-
-// Toggle Logic (Delegated to the container)
-document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("month-toggle")) {
-        const table = e.target.nextElementSibling;
-        if (table) {
-            const isHidden = getComputedStyle(table).display === "none";
-            table.style.display = isHidden ? "table" : "none";
-        }
-    }
-});
+// Run everything when the page is fully loaded
+window.addEventListener("load", initEventsPage);
