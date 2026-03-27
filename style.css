@@ -317,7 +317,7 @@ h1{
 rentals
 ========================== */
 .p2{
-   text-align:left;
+   text-align:left !important;
 }
 /* ==========================
    8. MOBILE & RESPONSIVE
