@@ -1,76 +1,64 @@
-fetch("./navbar.html")
-  .then(response => response.text())
+// 1. LOAD THE NAVBAR
+fetch("./navbar.html") // Try "./navbar.html" or "navbar.html"
+  .then(response => {
+    if (!response.ok) throw new Error("Navbar file not found");
+    return response.text();
+  })
   .then(data => {
     document.getElementById("navbar").innerHTML = data;
 
+    // Grab elements AFTER they are added to the page
     const hamburger = document.getElementById("hamburger");
     const menu = document.getElementById("menu");
     const searchButton = document.getElementById("searchButton");
     const searchBox = document.getElementById("searchBox");
 
-    // 1. Hamburger Toggle (Keep this)
+    // HAMBURGER TOGGLE
     if (hamburger && menu) {
       hamburger.addEventListener("click", () => {
         menu.classList.toggle("active");
       });
     }
 
-    // 2. Mobile Dropdown (Keep this)
-    document.querySelectorAll(".dropdown > a").forEach(link => {
-      link.addEventListener("click", (e) => {
-        if (window.innerWidth <= 950) {
-          e.preventDefault();
-          link.parentElement.classList.toggle("open");
-        }
-      });
-    });
-
-    // 3. Search Toggle (Keep this)
+    // SEARCH TOGGLE (Makes the box pop up)
     if (searchButton && searchBox) {
       searchButton.addEventListener("click", () => {
-        const isHidden = searchBox.style.display === "none";
+        const isHidden = window.getComputedStyle(searchBox).display === "none";
         searchBox.style.display = isHidden ? "inline-block" : "none";
         if (isHidden) searchBox.focus();
       });
 
-      // ==========================================
-      // 4. NEW SMART SEARCH LOGIC (Put it here!)
-      // ==========================================
+      // SEARCH EXECUTION (The Enter Key)
       searchBox.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    const query = searchBox.value.toLowerCase().trim();
-    if (!query) return;
+        if (e.key === "Enter") {
+          const query = searchBox.value.toLowerCase().trim();
+          if (!query) return;
 
-    // We use .includes("calendar.html") because that's your filename!
-    const isEventsPage = window.location.pathname.includes("calendar.html");
+          const isEventsPage = window.location.href.includes("calendar.html");
 
-    if (isEventsPage) {
-      // 1. FILTERING: If we're already on the calendar, just hide/show the months
-      const months = document.querySelectorAll(".month");
-      months.forEach(month => {
-        const text = month.innerText.toLowerCase();
-        month.style.display = text.includes(query) ? "block" : "none";
-      });
-    } else {
-      // 2. REDIRECTING: If we're on Home/About/Rentals, use the JSON
-      fetch("pages.json")
-        .then(res => res.json())
-        .then(pages => {
-          const match = pages.find(p => 
-            p.title.toLowerCase().includes(query) || 
-            p.content.toLowerCase().includes(query)
-          );
-
-          if (match) {
-            window.location.href = match.url;
+          if (isEventsPage) {
+            const months = document.querySelectorAll(".month");
+            months.forEach(month => {
+              const text = month.innerText.toLowerCase();
+              month.style.display = text.includes(query) ? "block" : "none";
+            });
           } else {
-            alert("No results found for '" + query + "'");
+            fetch("pages.json")
+              .then(res => res.json())
+              .then(pages => {
+                const match = pages.find(p => 
+                  p.title.toLowerCase().includes(query) || 
+                  p.content.toLowerCase().includes(query)
+                );
+                if (match) window.location.href = match.url;
+                else alert("No results found for '" + query + "'");
+              });
           }
-        })
-        .catch(err => console.error("Search Error:", err));
+        }
+      });
     }
-  }
-});
+  })
+  .catch(err => console.error("Navbar Error:", err));
 // ----------------------------
 //  CALENDAR TOGGLE
 // ----------------------------
