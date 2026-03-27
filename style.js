@@ -127,37 +127,45 @@ const interval = setInterval(() => {
 // ----------------------------
 //  CALENDAR TOGGLE
 // ----------------------------
-document.addEventListener("DOMContentLoaded", () => {
+const sortMonths = () => {
     const container = document.getElementById("months-container");
     if (!container) return;
 
-    // 1. Get ONLY the div elements with class "month"
+    // 1. Grab the Title (H1) so we can put it back at the top later
+    const title = container.querySelector("h1");
+
+    // 2. Get all month divs and turn them into an array
     const monthsArray = Array.from(container.querySelectorAll(".month"));
 
-    // 2. Sort Logic
+    // 3. Sort them alphabetically by the data-month string (2026 comes before 2027)
     monthsArray.sort((a, b) => {
-        const dateA = a.getAttribute('data-month'); // e.g. "2027-01"
-        const dateB = b.getAttribute('data-month'); // e.g. "2026-04"
-        
-        // This compares them alphabetically: "2026" comes before "2027"
+        const dateA = a.getAttribute('data-month') || "";
+        const dateB = b.getAttribute('data-month') || "";
         return dateA.localeCompare(dateB);
     });
 
-    // 3. Re-append them to the container
-    // Because the H1 is already there, appendChild will put 
-    // the sorted months one-by-one AFTER the H1.
+    // 4. Wipe the container clean to force a refresh
+    container.innerHTML = "";
+    
+    // 5. Put the Title back first
+    if (title) container.appendChild(title);
+
+    // 6. Put the months back in their NEW sorted order
     monthsArray.forEach(month => {
         container.appendChild(month);
     });
+};
 
-    // 4. Toggle Logic
-    container.addEventListener("click", (e) => {
-        if (e.target.classList.contains("month-toggle")) {
-            const table = e.target.nextElementSibling;
-            if (table) {
-                const isHidden = getComputedStyle(table).display === "none";
-                table.style.display = isHidden ? "table" : "none";
-            }
+// Run the sort when the page loads
+window.addEventListener("load", sortMonths);
+
+// Toggle Logic (Delegated to the container)
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("month-toggle")) {
+        const table = e.target.nextElementSibling;
+        if (table) {
+            const isHidden = getComputedStyle(table).display === "none";
+            table.style.display = isHidden ? "table" : "none";
         }
-    });
+    }
 });
