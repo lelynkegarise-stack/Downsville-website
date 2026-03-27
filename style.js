@@ -1,44 +1,38 @@
-// 1. LOAD THE NAVBAR
-fetch("./navbar.html") // Try "./navbar.html" or "navbar.html"
-  .then(response => {
-    if (!response.ok) throw new Error("Navbar file not found");
-    return response.text();
-  })
+fetch("./navbar.html")
+  .then(response => response.text())
   .then(data => {
-    document.getElementById("navbar").innerHTML = data;
+    const navElement = document.getElementById("navbar");
+    if (navElement) {
+        navElement.innerHTML = data;
+    }
 
-    // Grab elements AFTER they are added to the page
     const hamburger = document.getElementById("hamburger");
     const menu = document.getElementById("menu");
     const searchButton = document.getElementById("searchButton");
     const searchBox = document.getElementById("searchBox");
 
-    // HAMBURGER TOGGLE
     if (hamburger && menu) {
       hamburger.addEventListener("click", () => {
         menu.classList.toggle("active");
       });
     }
 
-    // SEARCH TOGGLE (Makes the box pop up)
     if (searchButton && searchBox) {
       searchButton.addEventListener("click", () => {
-        const isHidden = window.getComputedStyle(searchBox).display === "none";
+        const isHidden = searchBox.style.display === "none";
         searchBox.style.display = isHidden ? "inline-block" : "none";
         if (isHidden) searchBox.focus();
       });
 
-      // SEARCH EXECUTION (The Enter Key)
       searchBox.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
           const query = searchBox.value.toLowerCase().trim();
           if (!query) return;
 
-          const isEventsPage = window.location.href.includes("calendar.html");
+          const isEventsPage = window.location.pathname.includes("calendar.html");
 
           if (isEventsPage) {
-            const months = document.querySelectorAll(".month");
-            months.forEach(month => {
+            document.querySelectorAll(".month").forEach(month => {
               const text = month.innerText.toLowerCase();
               month.style.display = text.includes(query) ? "block" : "none";
             });
@@ -51,14 +45,15 @@ fetch("./navbar.html") // Try "./navbar.html" or "navbar.html"
                   p.content.toLowerCase().includes(query)
                 );
                 if (match) window.location.href = match.url;
-                else alert("No results found for '" + query + "'");
-              });
+                else alert("No results found.");
+              })
+              .catch(err => console.error("JSON Error:", err));
           }
         }
       });
     }
   })
-  .catch(err => console.error("Navbar Error:", err));
+  .catch(err => console.error("Fetch Error:", err));
 // ----------------------------
 //  CALENDAR TOGGLE
 // ----------------------------
