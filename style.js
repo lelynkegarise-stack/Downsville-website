@@ -54,7 +54,7 @@ fetch("./navbar.html")
             });
           } else {
             // If on any other page, look at the pages.json file
-            fetch("./pages.json")
+          fetch("pages.json")
               .then(res => res.json())
               .then(pages => {
                 const match = pages.find(p => 
