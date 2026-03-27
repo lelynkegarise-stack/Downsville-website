@@ -28,37 +28,65 @@ fetch("./navbar.html")
       });
 
       // 3. Search Logic (Enter Key)
-     searchBox.addEventListener("keypress", (e) => {
+  searchBox.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         const query = searchBox.value.toLowerCase().trim();
-        if (!query) return;
+        if (!query) {
+            // Reset: Show all months if search is empty
+            document.querySelectorAll(".month").forEach(m => m.style.display = "block");
+            return;
+        }
 
-        console.log("Searching for:", query); // Check your F12 console for this!
+        const isEventsPage = window.location.href.includes("calendar.html");
 
-        fetch("./pages.json")
-            .then(res => res.json())
-            .then(pages => {
-                // We search both Title and Content, and make sure both are lowercase
-                const match = pages.find(p => {
-                    const titleMatch = p.title.toLowerCase().includes(query);
-                    const contentMatch = p.content.toLowerCase().includes(query);
-                    return titleMatch || contentMatch;
-                });
+        if (isEventsPage) {
+            const months = document.querySelectorAll(".month");
+            let foundOnPage = false;
 
-                if (match) {
-                    console.log("Found match:", match.title);
-                    window.location.href = match.url;
+            months.forEach(month => {
+                const text = month.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    month.style.display = "block";
+                    foundOnPage = true;
+                    // Optional: Open the table so they can see the result
+                    const table = month.querySelector(".month-table");
+                    if (table) table.classList.add("show");
                 } else {
-                    console.warn("No match found in JSON for:", query);
-                    alert("No results found for '" + query + "'");
+                    month.style.display = "none";
                 }
-            })
-            .catch(err => {
-                console.error("Could not load pages.json. Check the file name!");
-                alert("Search error: Make sure pages.json exists in your folder.");
             });
+
+            // If "Rentals" wasn't found on the calendar, check the site-wide JSON
+            if (!foundOnPage) {
+                searchInJSON(query);
+            }
+        } else {
+            // Not on calendar? Go straight to JSON search
+            searchInJSON(query);
+        }
     }
 });
+
+// Helper function to handle the Redirect
+function searchInJSON(query) {
+    fetch("./pages.json")
+        .then(res => res.json())
+        .then(pages => {
+            const match = pages.find(p => 
+                p.title.toLowerCase().includes(query) || 
+                p.content.toLowerCase().includes(query)
+            );
+
+            if (match) {
+                window.location.href = match.url;
+            } else {
+                alert("No results found for '" + query + "'");
+                // Reset calendar so it's not a blank screen
+                document.querySelectorAll(".month").forEach(m => m.style.display = "block");
+            }
+        })
+        .catch(err => console.error("Error loading pages.json:", err));
+}
 // CALENDAR LOGIC (Runs independently)
 function initEvents() {
     const container = document.getElementById("months-container");
