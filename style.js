@@ -127,29 +127,37 @@ const interval = setInterval(() => {
 // ----------------------------
 //  CALENDAR TOGGLE
 // ----------------------------
-
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("months-container");
     if (!container) return;
 
-    // 1. Target only the divs with the class 'month'
+    // 1. Get ONLY the div elements with class "month"
     const monthsArray = Array.from(container.querySelectorAll(".month"));
 
-    // 2. Enhanced Sorting Logic
+    // 2. Sort Logic
     monthsArray.sort((a, b) => {
-        // .trim() removes any accidental hidden spaces
-        const dateA = a.dataset.month ? a.dataset.month.trim() : "";
-        const dateB = b.dataset.month ? b.dataset.month.trim() : "";
-
-        // Log to console so you can see if the values are being read correctly
-        console.log(`Comparing ${dateA} to ${dateB}`);
-
+        const dateA = a.getAttribute('data-month'); // e.g. "2027-01"
+        const dateB = b.getAttribute('data-month'); // e.g. "2026-04"
+        
+        // This compares them alphabetically: "2026" comes before "2027"
         return dateA.localeCompare(dateB);
     });
 
-    // 3. Re-attach them to the container
-    // This physically moves them in the DOM
+    // 3. Re-append them to the container
+    // Because the H1 is already there, appendChild will put 
+    // the sorted months one-by-one AFTER the H1.
     monthsArray.forEach(month => {
         container.appendChild(month);
+    });
+
+    // 4. Toggle Logic
+    container.addEventListener("click", (e) => {
+        if (e.target.classList.contains("month-toggle")) {
+            const table = e.target.nextElementSibling;
+            if (table) {
+                const isHidden = getComputedStyle(table).display === "none";
+                table.style.display = isHidden ? "table" : "none";
+            }
+        }
     });
 });
