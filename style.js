@@ -37,45 +37,40 @@ fetch("./navbar.html")
       // 4. NEW SMART SEARCH LOGIC (Put it here!)
       // ==========================================
       searchBox.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-          const query = searchBox.value.toLowerCase().trim();
-          if (!query) return;
+  if (e.key === "Enter") {
+    const query = searchBox.value.toLowerCase().trim();
+    if (!query) return;
 
-          // Check which page we are on
-          const isEventsPage = window.location.pathname.includes("upcoming-events.html") || 
-                               window.location.pathname.includes("calendar.html");
+    // We use .includes("calendar.html") because that's your filename!
+    const isEventsPage = window.location.pathname.includes("calendar.html");
 
-          if (isEventsPage) {
-            // If on the events page, just filter the months visible on screen
-            const months = document.querySelectorAll(".month");
-            months.forEach(month => {
-              const text = month.innerText.toLowerCase();
-              month.style.display = text.includes(query) ? "block" : "none";
-            });
-          } else {
-            // If on any other page, look at the pages.json file
-          fetch("pages.json")
-              .then(res => res.json())
-              .then(pages => {
-                const match = pages.find(p => 
-                  p.title.toLowerCase().includes(query) || 
-                  p.content.toLowerCase().includes(query)
-                );
-
-                if (match) {
-                  window.location.href = match.url;
-                } else {
-                  alert("No results found for '" + query + "'");
-                }
-              })
-              .catch(err => console.error("JSON Search Error:", err));
-          }
-        }
+    if (isEventsPage) {
+      // 1. FILTERING: If we're already on the calendar, just hide/show the months
+      const months = document.querySelectorAll(".month");
+      months.forEach(month => {
+        const text = month.innerText.toLowerCase();
+        month.style.display = text.includes(query) ? "block" : "none";
       });
-      // ==========================================
+    } else {
+      // 2. REDIRECTING: If we're on Home/About/Rentals, use the JSON
+      fetch("pages.json")
+        .then(res => res.json())
+        .then(pages => {
+          const match = pages.find(p => 
+            p.title.toLowerCase().includes(query) || 
+            p.content.toLowerCase().includes(query)
+          );
+
+          if (match) {
+            window.location.href = match.url;
+          } else {
+            alert("No results found for '" + query + "'");
+          }
+        })
+        .catch(err => console.error("Search Error:", err));
     }
-  })
-  .catch(err => console.error("Nav load error:", err));
+  }
+});
 // ----------------------------
 //  CALENDAR TOGGLE
 // ----------------------------
