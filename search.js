@@ -33,22 +33,26 @@ fetch("./navbar.html")
         if (isHidden) searchBox.focus();
       });
       // 4. NEW: Search Execution Logic
-      searchBox.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-          const query = searchBox.value.toLowerCase().trim();
-          
-          // This looks through your months and hides ones that don't match
-          const months = document.querySelectorAll(".month");
-          
-          months.forEach(month => {
-            const text = month.innerText.toLowerCase();
-            if (text.includes(query)) {
-              month.style.display = "block";
-            } else {
-              month.style.display = "none";
-            }
-          });
 
+searchBox.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        const query = searchBox.value.toLowerCase().trim();
+
+        // Instead of searching the HTML, we "fetch" the map of your site
+        fetch("./pages.json")
+            .then(res => res.json())
+            .then(data => {
+                // Look for the page that matches the search
+                const match = data.find(p => p.content.toLowerCase().includes(query));
+
+                if (match) {
+                    window.location.href = match.url; // GO to the page!
+                } else {
+                    alert("We couldn't find anything for '" + query + "'");
+                }
+            });
+    }
+});
           // Optional: Close the search box after searching
           // searchBox.style.display = "none";
         }
