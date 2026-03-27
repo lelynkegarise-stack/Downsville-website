@@ -1,103 +1,82 @@
+// 1. THE NAVBAR LOAD (Stays the same)
 fetch("./navbar.html")
-  .then(response => response.text())
+  .then(res => res.text())
   .then(data => {
-    const navElement = document.getElementById("navbar");
-    if (navElement) {
-      navElement.innerHTML = data;
-    }
+    document.getElementById("navbar").innerHTML = data;
+    setupSearch(); // We start the search AFTER the navbar exists
+  });
 
-    const hamburger = document.getElementById("hamburger");
-    const menu = document.getElementById("menu");
-    const searchButton = document.getElementById("searchButton");
-    const searchBox = document.getElementById("searchBox");
+// 2. THE SEARCH LOGIC (The "Smart" part)
+function setupSearch() {
+  const btn = document.getElementById("searchButton");
+  const box = document.getElementById("searchBox");
+  if (!btn || !box) return;
 
-    // 1. Hamburger Toggle
-    if (hamburger && menu) {
-      hamburger.addEventListener("click", () => {
-        menu.classList.toggle("active");
-      });
-    }
+  btn.onclick = () => {
+    box.style.display = box.style.display === "none" ? "inline-block" : "none";
+    box.focus();
+  };
 
-    // 2. Search Toggle (Button Click)
-    if (searchButton && searchBox) {
-      searchButton.addEventListener("click", () => {
-        // Use getComputedStyle to check visibility reliably
-        const isHidden = window.getComputedStyle(searchBox).display === "none";
-        searchBox.style.display = isHidden ? "inline-block" : "none";
-        if (isHidden) searchBox.focus();
-      });
-
-      // 3. Search Logic (Enter Key)
-searchBox.addEventListener("keypress", (e) => {
+  box.onkeypress = (e) => {
     if (e.key === "Enter") {
-        const query = searchBox.value.toLowerCase().trim();
-        if (!query) {
-            // Reset: Show all months if search is empty
-            document.querySelectorAll(".month").forEach(m => m.style.display = "block");
-            return;
+      const query = box.value.toLowerCase().trim();
+      if (!query) return;
+
+      const isCalendar = window.location.href.includes("calendar.html");
+
+      if (isCalendar) {
+        const months = document.querySelectorAll(".month");
+        let foundAny = false;
+
+        months.forEach(m => {
+          if (m.innerText.toLowerCase().includes(query)) {
+            m.style.display = "block";
+            foundAny = true;
+            // This line opens the table automatically if it finds a match!
+            const tbl = m.querySelector(".month-table");
+            if (tbl) tbl.classList.add("show");
+          } else {
+            m.style.display = "none";
+          }
+        });
+
+        // SAFETY HATCH: If "Rentals" isn't on the calendar, jump to the JSON
+        if (!foundAny) {
+          runGlobalSearch(query);
         }
-
-        const isEventsPage = window.location.href.includes("calendar.html");
-
-        if (isEventsPage) {
-            const months = document.querySelectorAll(".month");
-            let foundOnPage = false;
-
-            months.forEach(month => {
-                const text = month.innerText.toLowerCase();
-                if (text.includes(query)) {
-                    month.style.display = "block";
-                    foundOnPage = true;
-                    // Automatically open the table so they can see the result
-                    const table = month.querySelector(".month-table");
-                    if (table) table.classList.add("show");
-                } else {
-                    month.style.display = "none";
-                }
-            });
-
-            // CRITICAL FIX: If "Rentals" wasn't found on this page, search the site-wide JSON
-            if (!foundOnPage) {
-                searchInJSON(query);
-            }
-        } else {
-            // Not on calendar? Go straight to JSON search
-            searchInJSON(query);
-        }
+      } else {
+        runGlobalSearch(query);
+      }
     }
-});
-
-// Helper function to handle the Redirect
-function searchInJSON(query) {
-    fetch("./pages.json")
-        .then(res => res.json())
-        .then(pages => {
-            const match = pages.find(p => 
-                p.title.toLowerCase().includes(query) || 
-                p.content.toLowerCase().includes(query)
-            );
-
-            if (match) {
-                window.location.href = match.url;
-            } else {
-                alert("No results found for '" + query + "'");
-                // Reset calendar so it's not a blank screen if no results anywhere
-                document.querySelectorAll(".month").forEach(m => m.style.display = "block");
-            }
-        })
-        .catch(err => console.error("Error loading pages.json:", err));
+  };
 }
-// CALENDAR LOGIC (Runs independently)
+
+// 3. THE REDIRECT LOGIC (Finds "Rentals" in your JSON)
+function runGlobalSearch(query) {
+  fetch("./pages.json")
+    .then(res => res.json())
+    .then(data => {
+      const match = data.find(p => 
+        p.title.toLowerCase().includes(query) || 
+        p.content.toLowerCase().includes(query)
+      );
+      if (match) {
+        window.location.href = match.url;
+      } else {
+        alert("Sorry! Couldn't find anything for " + query);
+        // Put the calendar back to normal so it's not a blank screen
+        document.querySelectorAll(".month").forEach(m => m.style.display = "block");
+      }
+    });
+}
+
+// 4. YOUR CALENDAR LOGIC (Untouched and Safe)
 function initEvents() {
     const container = document.getElementById("months-container");
-    if (!container) return;
+    if (!container) return; // This prevents errors on Home/Rentals pages
 
     const months = Array.from(container.querySelectorAll(".month"));
-    months.sort((a, b) => {
-        const aDate = a.getAttribute('data-month') || "";
-        const bDate = b.getAttribute('data-month') || "";
-        return aDate.localeCompare(bDate);
-    });
+    months.sort((a, b) => (a.getAttribute('data-month') || "").localeCompare(b.getAttribute('data-month') || ""));
     months.forEach(month => container.appendChild(month));
 
     container.onclick = function(e) {
@@ -109,4 +88,3 @@ function initEvents() {
 }
 
 window.addEventListener("load", initEvents);
-initEvents();
