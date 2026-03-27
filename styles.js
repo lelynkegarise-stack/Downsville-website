@@ -28,42 +28,37 @@ fetch("./navbar.html")
       });
 
       // 3. Search Logic (Enter Key)
-      searchBox.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-          const query = searchBox.value.toLowerCase().trim();
-          if (!query) return;
+     searchBox.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        const query = searchBox.value.toLowerCase().trim();
+        if (!query) return;
 
-          // Flexible check for the calendar page
-          const isEventsPage = window.location.href.includes("calendar.html");
+        console.log("Searching for:", query); // Check your F12 console for this!
 
-          if (isEventsPage) {
-            document.querySelectorAll(".month").forEach(month => {
-              const text = month.innerText.toLowerCase();
-              month.style.display = text.includes(query) ? "block" : "none";
-            });
-          } else {
-            // Fetch the JSON from the root
-            fetch("./pages.json")
-              .then(res => res.json())
-              .then(pages => {
-                const match = pages.find(p => 
-                  p.title.toLowerCase().includes(query) || 
-                  p.content.toLowerCase().includes(query)
-                );
+        fetch("./pages.json")
+            .then(res => res.json())
+            .then(pages => {
+                // We search both Title and Content, and make sure both are lowercase
+                const match = pages.find(p => {
+                    const titleMatch = p.title.toLowerCase().includes(query);
+                    const contentMatch = p.content.toLowerCase().includes(query);
+                    return titleMatch || contentMatch;
+                });
+
                 if (match) {
-                  window.location.href = match.url;
+                    console.log("Found match:", match.title);
+                    window.location.href = match.url;
                 } else {
-                  alert("No results found for: " + query);
+                    console.warn("No match found in JSON for:", query);
+                    alert("No results found for '" + query + "'");
                 }
-              })
-              .catch(err => console.error("JSON Error:", err));
-          }
-        }
-      });
+            })
+            .catch(err => {
+                console.error("Could not load pages.json. Check the file name!");
+                alert("Search error: Make sure pages.json exists in your folder.");
+            });
     }
-  })
-  .catch(err => console.error("Navbar Fetch Error:", err));
-
+});
 // CALENDAR LOGIC (Runs independently)
 function initEvents() {
     const container = document.getElementById("months-container");
