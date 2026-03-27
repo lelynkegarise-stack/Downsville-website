@@ -32,6 +32,28 @@ fetch("./navbar.html")
         searchBox.style.display = isHidden ? "inline-block" : "none";
         if (isHidden) searchBox.focus();
       });
+      // 4. NEW: Search Execution Logic
+      searchBox.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          const query = searchBox.value.toLowerCase().trim();
+          
+          // This looks through your months and hides ones that don't match
+          const months = document.querySelectorAll(".month");
+          
+          months.forEach(month => {
+            const text = month.innerText.toLowerCase();
+            if (text.includes(query)) {
+              month.style.display = "block";
+            } else {
+              month.style.display = "none";
+            }
+          });
+
+          // Optional: Close the search box after searching
+          // searchBox.style.display = "none";
+        }
+      });
+  .catch(err => console.error("Nav load error:", err));
     }
   })
   .catch(err => console.error("Nav load error:", err));
