@@ -65,14 +65,27 @@ fetch("./navbar.html")
     .then(res => res.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
-        setupSearch(); // <--- Run this ONLY after navbar exists
+        setupSearch(); 
         
-        // Setup Hamburger (since it's also in the navbar)
         const hamburger = document.getElementById("hamburger");
         const menu = document.getElementById("menu");
+
+        // Main Mobile Menu Toggle
         if (hamburger && menu) {
             hamburger.onclick = () => menu.classList.toggle("active");
         }
+
+        // Dropdown Toggle for Mobile
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dd => {
+            dd.addEventListener('click', function(e) {
+                // Only trigger this if we are on a small screen
+                if (window.innerWidth <= 768) { 
+                    e.preventDefault(); // Stop the "About Us" link from firing
+                    this.classList.toggle('open');
+                }
+            });
+        });
     });
 
 // CALENDAR LOGIC (Runs independently)
