@@ -35,14 +35,24 @@ fetch("./navbar.html")
           if (!query) return;
 
           // Flexible check for the calendar page
-          const isEventsPage = window.location.href.includes("calendar.html");
+          const isEventsPage = window.location.pathname.includes("calendar.html");
 
           if (isEventsPage) {
-            document.querySelectorAll(".month").forEach(month => {
-              const text = month.innerText.toLowerCase();
-              month.style.display = text.includes(query) ? "block" : "none";
-            });
-          } else {
+            let foundCount = 0;
+      document.querySelectorAll(".month").forEach(month => {
+        const text = month.innerText.toLowerCase();
+        if (text.includes(query)) {
+          month.style.display = "block";
+          foundCount++;
+        } else {
+          month.style.display = "none";
+        }
+      });
+
+      if (foundCount === 0) {
+        alert("No events found matching: " + query);
+      }
+    } else {
             // Fetch the JSON from the root
             fetch("./pages.json")
               .then(res => res.json())
