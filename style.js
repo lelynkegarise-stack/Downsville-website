@@ -37,22 +37,43 @@ fetch("./navbar.html")
           // Flexible check for the calendar page
           const isEventsPage = window.location.pathname.includes("calendar.html");
 
-          if (isEventsPage) {
-            let foundCount = 0;
+         let localMatches = 0;
+
+    if (isEventsPage) {
       document.querySelectorAll(".month").forEach(month => {
         const text = month.innerText.toLowerCase();
         if (text.includes(query)) {
           month.style.display = "block";
-          foundCount++;
+          localMatches++;
         } else {
           month.style.display = "none";
         }
       });
+    }
 
-      if (foundCount === 0) {
-        alert("No events found matching: " + query);
-      }
-    } else {
+    // If we aren't on the calendar OR we found nothing on the calendar...
+    if (!isEventsPage || localMatches === 0) {
+      fetch("./pages.json")
+        .then(res => res.json())
+        .then(pages => {
+          const match = pages.find(p => 
+            p.title.toLowerCase().includes(query) || 
+            p.content.toLowerCase().includes(query)
+          );
+          
+          if (match) {
+            window.location.href = match.url;
+          } else if (isEventsPage && localMatches === 0) {
+            // Only alert if we found nothing in the HTML AND nothing in the JSON
+            alert("No results found for: " + query);
+            // Optional: show all months again so the page isn't blank
+            document.querySelectorAll(".month").forEach(m => m.style.display = "block");
+          }
+        })
+        .catch(err => console.error("Search Error:", err));
+    }
+  }
+});
             // Fetch the JSON from the root
             fetch("./pages.json")
               .then(res => res.json())
