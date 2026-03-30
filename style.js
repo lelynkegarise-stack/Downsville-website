@@ -30,6 +30,7 @@ fetch("./navbar.html")
       // 3. Search Logic (Enter Key)
       searchBox.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
+          e.preventDefault();
           const query = searchBox.value.toLowerCase().trim();
           if (!query) return;
 
