@@ -82,8 +82,12 @@ nav {
     font-weight: normal;
 }
 
-.dropdown:hover .dropdown-content { display: block; }
-/* Container for the search elements */
+/* Only enable hover on desktop screens */
+@media screen and (min-width: 951px) {
+    .dropdown:hover .dropdown-content { 
+        display: block; 
+    }
+}/* Container for the search elements */
 #navSearchContainer {
     display: flex;
     align-items: center;
