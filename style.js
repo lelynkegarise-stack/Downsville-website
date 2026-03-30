@@ -78,11 +78,13 @@ fetch("./navbar.html")
         // Dropdown Toggle for Mobile
         const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dd => {
-            dd.addEventListener('click', function(e) {
-                // Only trigger this if we are on a small screen
-                if (window.innerWidth <= 768) { 
-                    e.preventDefault(); // Stop the "About Us" link from firing
-                    this.classList.toggle('open');
+            const link = dd.querySelector('a'); 
+
+            link.addEventListener('click', function(e) {
+                // If the screen is smaller than 950px (your CSS breakpoint)
+                if (window.innerWidth <= 950) { 
+                    e.preventDefault(); // Stop it from going to index.html
+                    dd.classList.toggle('open'); // This triggers your CSS rule
                 }
             });
         });
