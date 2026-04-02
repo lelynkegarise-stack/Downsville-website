@@ -379,3 +379,12 @@ rentals
     .intro { padding: 20px; min-height: auto; }
     .logo1 { width: 80px !important; }
 }
+/*thanks button*/
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
