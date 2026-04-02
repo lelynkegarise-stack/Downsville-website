@@ -381,6 +381,8 @@ rentals
 }
 /*thanks button*/
 .button {
+  display: flex;
+  justify-content: center;
   display: inline-block;
   padding: 10px 20px;
   background-color: #007bff;
