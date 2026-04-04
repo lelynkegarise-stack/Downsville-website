@@ -76,7 +76,7 @@ fetch("./navbar.html")
         }
 
         // Dropdown Toggle for Mobile
-        const dropdowns = document.querySelectorAll('.dropdown');
+       /* const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dd => {
             const link = dd.querySelector('a'); 
 
@@ -86,7 +86,7 @@ fetch("./navbar.html")
                     e.preventDefault(); // Stop it from going to index.html
                     dd.classList.toggle('open'); // This triggers your CSS rule
                 }
-            });
+            });*/
         });
     });
 
