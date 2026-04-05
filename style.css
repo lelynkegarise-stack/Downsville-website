@@ -31,8 +31,9 @@ nav {
 }
 
 .logo img {
-    height: 50px !important;
+    height: 45px !important;
     width: auto !important;
+    display:block;
 }
 
 .hamburger {
