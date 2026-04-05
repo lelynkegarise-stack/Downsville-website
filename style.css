@@ -33,7 +33,7 @@ nav {
     width: auto !important;
 }
 
-.hamburger {
+/*.hamburger {
     display: none;
     font-size: 30px;
     background: none;
@@ -41,7 +41,7 @@ nav {
     cursor: pointer;
     color: blue;
 }
-
+*/
 .menu {
     list-style: none !important;
     display: flex;
