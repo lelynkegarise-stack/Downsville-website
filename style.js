@@ -71,7 +71,7 @@ fetch("./navbar.html")
         const menu = document.getElementById("menu");
 
         // Main Mobile Menu Toggle
-       /* if (hamburger && menu) {
+       if (hamburger && menu) {
             hamburger.onclick = () => menu.classList.toggle("active");
         }
 
@@ -86,7 +86,7 @@ fetch("./navbar.html")
                     e.preventDefault(); // Stop it from going to index.html
                     dd.classList.toggle('open'); // This triggers your CSS rule
                 }
-            });*/
+            });
         });
     });
 
