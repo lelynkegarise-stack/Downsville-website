@@ -83,10 +83,19 @@ nav {
 }
 
 /* Only enable hover on desktop screens */
-@media screen and (min-width: 951px) {
+/*@media screen and (min-width: 951px) {
     .dropdown:hover .dropdown-content { 
         display: block; 
-    }
+    }*/
+/* Remove the min-width restriction so it works on mobile too */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* This helps the dropdown stay open when tapped on iPhone */
+.dropdown:active .dropdown-content {
+    display: block;
+}
 }/* Container for the search elements */
 #navSearchContainer {
     display: flex;
