@@ -61,13 +61,13 @@ function setupSearch() {
 }
 
 // 1. Fetch Navbar and then run setup
-/*fetch("./navbar.html")
+fetch("./navbar.html")
     .then(res => res.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
         setupSearch(); 
         
-        const hamburger = document.getElementById("hamburger");
+   //     const hamburger = document.getElementById("hamburger");
         const menu = document.getElementById("menu");
 
         // Main Mobile Menu Toggle
