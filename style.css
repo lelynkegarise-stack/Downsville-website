@@ -326,7 +326,7 @@ rentals
 /* ==========================
    8. MOBILE & RESPONSIVE
    ========================== */
-@media screen and (max-width: 950px) {
+/*@media screen and (max-width: 950px) {
     .hamburger { display: block !important; }
 
     .menu {
@@ -343,7 +343,7 @@ rentals
         z-index: 1500;
     }
 
-    .menu.active { display: flex !important; }
+    .menu.active { display: flex !important; }*/
 
     .dropdown-content {
         position: relative !important;
