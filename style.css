@@ -23,7 +23,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: white;
+    background-color: blue;
     position: relative;
     z-index: 1000;
     height: 70px;
