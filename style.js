@@ -71,12 +71,12 @@ fetch("./navbar.html")
         const menu = document.getElementById("menu");
 
         // Main Mobile Menu Toggle
-        if (hamburger && menu) {
+       /* if (hamburger && menu) {
             hamburger.onclick = () => menu.classList.toggle("active");
         }
 
         // Dropdown Toggle for Mobile
-       /* const dropdowns = document.querySelectorAll('.dropdown');
+       const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dd => {
             const link = dd.querySelector('a'); 
 
