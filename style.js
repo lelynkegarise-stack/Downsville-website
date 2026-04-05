@@ -61,7 +61,7 @@ function setupSearch() {
 }
 
 // 1. Fetch Navbar and then run setup
-fetch("./navbar.html")
+/*fetch("./navbar.html")
     .then(res => res.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
