@@ -333,8 +333,8 @@ rentals
      nav {
         flex-direction: column; 
         height: auto;
-        padding: 15px 10px;
-        gap: 15px;
+        padding: 10px 10px;
+        gap: 10px;
     }
 
     .menu {
