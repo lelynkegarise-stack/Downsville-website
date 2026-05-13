@@ -330,14 +330,21 @@ rentals
    8. MOBILE & RESPONSIVE
    ========================== */
 @media screen and (max-width: 950px) {
-    .hamburger { display: block !important; }
+     nav {
+        flex-direction: column; 
+        height: auto;
+        padding: 15px 10px;
+        gap: 15px;
+    }
 
     .menu {
-        display: none !important;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        left: 0;
+        display: flex !important;
+        flex-direction: row;
+        flew-wrap: wrap;
+        position: static;
+        justify-content: center;
+        gap: 15px;               
+        margin-top: 15px;
         width: 100%;
         background-color: white;
         border-top: 1px solid #ddd;
@@ -347,6 +354,13 @@ rentals
     }
 
     .menu.active { display: flex !important; }*/
+
+    .menu li {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        list-style: none !important;
+    }
 
     .dropdown-content {
         position: relative !important;
@@ -361,12 +375,6 @@ rentals
 
     .dropdown.open .dropdown-content { display: block !important; }
 
-    .menu li {
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-        list-style: none !important;
-    }
 
     /* Location stack */
     .location-content {
