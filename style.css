@@ -27,20 +27,12 @@ nav {
     position: relative;
     z-index: 1000;
     height: 70px;
+   background: white;
 }
 
 .logo img {
     height: 50px !important;
     width: auto !important;
-}
-
-.hamburger {
-    display: none;
-    font-size: 30px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: blue;
 }
 
 .menu {
@@ -336,12 +328,13 @@ rentals
         padding: 10px 10px;
         gap: 10px;
         font-size:13px;
+        background: white;
     }
 
     .menu {
         display: flex !important;
         flex-direction: row;
-        flew-wrap: wrap;
+        flex-wrap: wrap;
         position: static;
         justify-content: center;
         gap: 15px;               
@@ -354,7 +347,7 @@ rentals
         z-index: 1500;
     }
 
-    .menu.active { display: flex !important; }*/
+    .menu.active { display: flex !important; }
 
     .menu li {
         width: 100%;
@@ -385,6 +378,7 @@ rentals
 
     .location-text { text-align: center; margin-bottom: 30px; }
 }
+
 
 /* Sideways phone */
 @media screen and (orientation: landscape) and (max-height: 500px) {
