@@ -331,38 +331,27 @@ rentals
         font-size: 13px;
         background: white;
     }
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
 
-    .menu {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: center !important;
-        align-items: center !important;
+    gap: 10px;
+    padding: 10px 5px;
+    overflow-x: auto;
+}
 
-        width: auto !important;
+.menu li a {
+    font-size: 11px;
+    white-space: nowrap;
+}
 
-        gap: 15px;
-        margin: 0;
-        padding: 10px 0;
-
-        list-style: none !important;
-        background-color: white;
-        border-top: 1px solid #ddd;
-    }
-
-    .menu li {
-        display: inline-block !important;
-        width: auto !important;
-        flex: 0 0 auto !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-
-    .menu li a {
-        display: inline-block;
-        padding: 10px;
-        white-space: nowrap;
-    }
+#searchButton {
+    font-size: 16px;
+}
+    
 
 
     .dropdown-content {
