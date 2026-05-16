@@ -325,16 +325,14 @@ rentals
      nav {
         flex-direction: column; 
         height: auto;
-        padding: 10px 10px;
-        gap: 10px;
-        font-size:13px;
-        background: white;
+        padding: 15px 10px;
+        gap: 15px;
     }
 
     .menu {
         display: flex !important;
         flex-direction: row;
-        flex-wrap: wrap;
+        flew-wrap: wrap;
         position: static;
         justify-content: center;
         gap: 15px;               
@@ -347,15 +345,14 @@ rentals
         z-index: 1500;
     }
 
-    .menu.active { display: flex !important; }
+    .menu.active { display: flex !important; }*/
 
     .menu li {
-        width: auto;
+        width: 100%;
         text-align: center;
-        padding: 5px 10px;
+        padding: 10px 0;
         list-style: none !important;
     }
-
     .dropdown-content {
         position: relative !important;
         display: none !important;
