@@ -29,6 +29,10 @@ function setupSearch() {
                     if (text.includes(query)) {
                         month.style.display = "block";
                         localMatches++;
+                        
+                        // Automatically open matching calendar tables
+                        const tbl = month.querySelector(".month-table");
+                        if (tbl) tbl.classList.add("show");
                     } else {
                         month.style.display = "none";
                     }
@@ -48,7 +52,6 @@ function setupSearch() {
                             window.location.href = match.url;
                         } else {
                             alert("No results found for: " + query);
-                            // Reset calendar so it isn't blank
                             if (isEventsPage) {
                                 document.querySelectorAll(".month").forEach(m => m.style.display = "block");
                             }
@@ -67,26 +70,26 @@ fetch("./navbar.html")
         document.getElementById("navbar").innerHTML = data;
         setupSearch(); 
         
-   //     const hamburger = document.getElementById("hamburger");
+        // Safety check for mobile elements
+        const hamburger = document.getElementById("hamburger");
         const menu = document.getElementById("menu");
 
-        // Main Mobile Menu Toggle
-       if (hamburger && menu) {
+        if (hamburger && menu) {
             hamburger.onclick = () => menu.classList.toggle("active");
         }
 
-        // Dropdown Toggle for Mobile
-       const dropdowns = document.querySelectorAll('.dropdown');
+        // Dropdown Toggle for Mobile (Taps intercept page jumps to open sub-menus)
+        const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dd => {
             const link = dd.querySelector('a'); 
-
-            link.addEventListener('click', function(e) {
-                // If the screen is smaller than 950px (your CSS breakpoint)
-                if (window.innerWidth <= 950) { 
-                    e.preventDefault(); // Stop it from going to index.html
-                    dd.classList.toggle('open'); // This triggers your CSS rule
-                }
-            });
+            if (link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 950) { 
+                        e.preventDefault(); 
+                        dd.classList.toggle('open'); 
+                    }
+                });
+            }
         });
     });
 
@@ -112,4 +115,3 @@ function initEvents() {
 }
 
 window.addEventListener("load", initEvents);
-initEvents();
