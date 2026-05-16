@@ -83,12 +83,14 @@ fetch("./navbar.html")
         dropdowns.forEach(dd => {
             const link = dd.querySelector('a'); 
             if (link) {
+                const clickEvent = ('ontouchstart' in window) ? 'touchstart' : 'click';
                 link.addEventListener('click', function(e) {
                     if (window.innerWidth <= 950) { 
                         e.preventDefault(); 
+                        e.stopPropagation();            // Prevents the touch from leaking to other elements
                         dd.classList.toggle('open'); 
                     }
-                });
+                }, { passive: false });
             }
         });
     });
