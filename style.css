@@ -350,9 +350,9 @@ rentals
     .menu.active { display: flex !important; }
 
     .menu li {
-        width: 100%;
+        width: auto;
         text-align: center;
-        padding: 10px 0;
+        padding: 5px 10px;
         list-style: none !important;
     }
 
