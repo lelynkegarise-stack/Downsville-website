@@ -351,15 +351,20 @@ rentals
         padding: 0;
         list-style: none !important;
     }
-    .dropdown-content {
-        position: relative !important;
-        display: none !important;
-        width: 90% !important;
-        margin: 10px auto !important;
-        background-color: #f9f9f9 !important;
-        border-radius: 12px !important;
-        box-shadow: inset 0 2px 5px rgba(0,0,0,0.05) !important;
-        padding: 5px 0 !important;
+   .dropdown {
+        position: relative; /* Keeps the dropdown attached to the 'About' text block */
+    }
+   .dropdown-content {
+        position: absolute !important;   /* Floats sub-menu over content instead of moving menu items */
+        top: 100% !important;            /* Positions it cleanly beneath the header row */
+        left: 50% !important;
+        transform: translateX(-50%);     /* Centers the alignment on mobile screens */
+        display: none !important;        /* Keeps it hidden until clicked */
+        background-color: white !important;
+        min-width: 160px !important;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.15) !important;
+        border-radius: 8px !important;
+        z-index: 2500 !important;        /* Guarantees it hovers above text/maps */
     }
 
     .dropdown.open .dropdown-content { display: block !important; }
