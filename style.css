@@ -323,34 +323,32 @@ rentals
    ========================== */
 @media screen and (max-width: 950px) {
      nav {
-        flex-direction: column; 
+        flex-direction: row;          /* Switch from column to row */
+        justify-content: space-between; /* Pushes logo to left, menu/search to right */
+        align-items: center;
         height: auto;
-        padding: 15px 10px;
-        gap: 15px;
+        padding: 10px 20px;
+        font-size: 13px;
+        background: white;
     }
 
     .menu {
         display: flex !important;
         flex-direction: row;
-        flew-wrap: wrap;
-        position: static;
-        justify-content: center;
-        gap: 15px;               
-        margin-top: 15px;
-        width: 100%;
+        flew-wrap: nowrap;
+        gap: 10px;               
+        margin-top: 0;
         background-color: white;
-        border-top: 1px solid #ddd;
-        padding-bottom: 20px;
-        list-style: none !important;
-        z-index: 1500;
+        border-top: none;
+        padding-bottom: 0;
     }
 
     .menu.active { display: flex !important; }*/
 
     .menu li {
-        width: 100%;
+        width: auto !important;
         text-align: center;
-        padding: 10px 0;
+        padding: 0;
         list-style: none !important;
     }
     .dropdown-content {
