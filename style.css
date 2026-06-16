@@ -253,6 +253,8 @@ button {
 }
 
 /* Tables hidden by default */
+
+
 .month-table {
   display: none; /* This hides it initially */
   width: 100%;
@@ -260,6 +262,7 @@ border-collapse: collapse;
 }
 
 /* This is the magic class the JS adds/removes */
+
 .month-table.show {
   display: table !important; 
 }
@@ -317,6 +320,35 @@ rentals
 ========================== */
 .p2{
    text-align:left !important;
+}
+/*=====================
+tip jar winnners
+=====================*/
+.tips {
+  margin-bottom: 20px;
+}
+
+.tips-table {
+  display: table; 
+  width: 100%;
+border-collapse: collapse;
+}
+
+/* Table styling */
+.tips-table th,
+.tips-table td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: left;
+}
+
+.tips-table th {
+  background-color: #ddd;
+}
+
+.tips-table td a {
+  color: blue;
+  text-decoration: none;
 }
 /* ==========================
    8. MOBILE & RESPONSIVE
