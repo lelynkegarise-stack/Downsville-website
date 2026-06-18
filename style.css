@@ -358,7 +358,7 @@ h1 {
 /* The standalone action button styling (Vibrant Club Yellow) */
 .button {
     display: inline-block;
-    background-color: #FFD700; /* Rich gold/yellow */
+    background-color: ##FFFF00; /* Rich gold/yellow */
     color: #000080;            /* Deep navy blue text for excellent contrast */
     font-weight: bold;
     text-decoration: none;
@@ -371,7 +371,7 @@ h1 {
 
 /* Hover state effect */
 .button:hover {
-    background-color: #E6C200; /* Rich dark amber gold on hover */
+    background-color: #D4AF37; /* Rich dark amber gold on hover */
 }
 
 /* ==========================
