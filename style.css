@@ -186,4 +186,269 @@ nav {
     display: block !important;
     margin: 0 !important;
     padding: 0 !important;
-    background-color:
+    background-color: #333;
+    clear: both;
+}
+
+.footer-content {
+    max-width: 100%;
+    margin: 0;
+    padding: 20px 5%;
+    color: white;
+}
+
+/* ==========================
+   6. FORMS
+   ========================== */
+form {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+}
+
+/* Default standard button styling for generic forms */
+form button {
+    margin-top: 16px;
+    padding: 10px 20px;
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* ==========================
+   7. CALENDAR / MONTH TOGGLE
+   ========================== */
+.month {
+    margin-bottom: 20px;
+}
+
+/* Month buttons */
+.month-toggle {
+    width: 100%;
+    padding: 12px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.month-toggle:hover {
+    background-color: darkblue;
+}
+
+.month-table {
+    display: none; 
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.month-table.show {
+    display: table !important; 
+}
+
+/* Table styling */
+.month-table th,
+.month-table td {
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: left;
+}
+
+.month-table th {
+    background-color: #ddd;
+}
+
+.month-table td a {
+    color: blue;
+    text-decoration: none;
+}
+
+.month-table td a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================
+   8. EVENTS & LAYOUTS
+   ========================== */
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left {
+    width: 45%;
+    text-align: center;
+    height: 100%;
+}
+
+.right {
+    width: 45%;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+h4 {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.p2 {
+   text-align: left !important;
+}
+
+/* ==========================
+   9. TIP JAR WINNERS / BUTTONS
+   ========================== */
+.tips {
+    margin-bottom: 20px;
+}
+
+.tips-table {
+    display: table; 
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tips-table th,
+.tips-table td {
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: left;
+}
+
+.tips-table th {
+    background-color: #ddd;
+}
+
+.tips-table td a {
+    color: blue;
+    text-decoration: none;
+}
+
+/* Parent styling to horizontally center the action button */
+.button-container {
+    display: flex;
+    justify-content: center; 
+    width: 100%;             
+    margin: 20px 0; /* Gives the container vertical space on the page */
+}
+
+/* The standalone action button styling (Vibrant Club Yellow) */
+.button {
+    display: inline-block;
+    background-color: #FFD700; /* Rich gold/yellow */
+    color: #000080;            /* Deep navy blue text for excellent contrast */
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover state effect */
+.button:hover {
+    background-color: #E6C200; /* Rich dark amber gold on hover */
+}
+
+/* ==========================
+   10. MOBILE & RESPONSIVE
+   ========================== */
+@media screen and (max-width: 950px) {
+    nav {
+        flex-direction: row;          
+        justify-content: space-between; 
+        align-items: center;
+        height: auto;
+        padding: 10px 20px;
+        font-size: 10px;
+        background: white;
+    }
+
+    .menu {
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 10px;              
+        margin-top: 0;
+        background-color: white;
+        border-top: none;
+        padding-bottom: 0;
+    }
+
+    .menu.active { 
+        display: flex !important; 
+    }
+
+    .menu li {
+        width: auto !important;
+        text-align: center;
+        padding: 0;
+        list-style: none !important;
+    }
+
+    .dropdown {
+        position: relative; 
+    }
+
+    .dropdown-content {
+        position: absolute !important;   
+        top: 100% !important;            
+        left: 50% !important;
+        transform: translateX(-50%);     
+        display: none !important;        
+        background-color: white !important;
+        min-width: 160px !important;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.15) !important;
+        border-radius: 8px !important;
+        z-index: 2500 !important;        
+    }
+
+    .dropdown.open .dropdown-content { 
+        display: block !important; 
+    }
+
+    .location-content {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .location-text { 
+        text-align: center; 
+        margin-bottom: 30px; 
+    }
+}
+
+/* Sideways phone viewport settings */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .intro { 
+        padding: 20px; 
+        min-height: auto; 
+    }
+    .logo1 { 
+        width: 80px !important; 
+    }
+}
