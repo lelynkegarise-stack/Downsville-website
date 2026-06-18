@@ -12,7 +12,6 @@ body {
     font-family: Arial, sans-serif;
     overflow-x: hidden;
     width: 100%;
-   overflow-x:hidden;
 }
 
 /* ==========================
@@ -27,7 +26,6 @@ nav {
     position: relative;
     z-index: 1000;
     height: 70px;
-   background: white;
 }
 
 .logo img {
@@ -80,7 +78,9 @@ nav {
     .dropdown:hover .dropdown-content { 
         display: block; 
     }
-}/* Container for the search elements */
+}
+
+/* Container for the search elements */
 #navSearchContainer {
     display: flex;
     align-items: center;
@@ -94,7 +94,7 @@ nav {
     border: none;
     cursor: pointer;
     font-size: 20px;
-    color: blue; /* Matches your menu color */
+    color: blue;
     padding: 5px;
 }
 
@@ -105,8 +105,8 @@ nav {
     border-radius: 20px;
     outline: none;
     width: 15vw; 
-    min-width:80px;
-    max-width:180px;
+    min-width: 80px;
+    max-width: 180px;
     font-size: 14px;
     background-color: white;
     color: #333;
@@ -186,266 +186,4 @@ nav {
     display: block !important;
     margin: 0 !important;
     padding: 0 !important;
-    background-color: #333;
-    clear: both;
-}
-
-.footer-content {
-    max-width: 100%;
-    margin: 0;
-    padding: 20px 5%;
-    color: white;
-}
-
-/* ==========================
-   6. FORMS
-   ========================== */
-form {
-    max-width: 500px;
-    margin: 20px auto;
-}
-
-label {
-    display: block;
-    margin-top: 12px;
-    font-weight: bold;
-}
-
-input, select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-}
-
-button {
-    margin-top: 16px;
-    padding: 10px 20px;
-    background: blue;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-/* ==========================
-   7. CALENDAR / MONTH TOGGLE
-   ========================== */
-/* ===== CALENDAR ===== */
-.month {
-  margin-bottom: 20px;
-}
-
-/* Month buttons */
-.month-toggle {
-  width: 100%;
-  padding: 12px;
-  background-color: blue;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  text-align: left;
-  margin-bottom: 5px;
-  border-radius: 5px;
-}
-
-.month-toggle:hover {
-  background-color: darkblue;
-}
-
-/* Tables hidden by default */
-
-
-.month-table {
-  display: none; /* This hides it initially */
-  width: 100%;
-border-collapse: collapse;
-}
-
-/* This is the magic class the JS adds/removes */
-
-.month-table.show {
-  display: table !important; 
-}
-
-/* Table styling */
-.month-table th,
-.month-table td {
-  border: 1px solid #333;
-  padding: 10px;
-  text-align: left;
-}
-
-.month-table th {
-  background-color: #ddd;
-}
-
-.month-table td a {
-  color: blue;
-  text-decoration: none;
-}
-
-.month-table td a:hover {
-  text-decoration: underline;
-}
-/* ==========================
-   Events
-   ========================== */
-
-.container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.left {
-  width: 45%;
-  text-align: center;
-  height: 100%;
-}
-
-.right {
-  width: 45%;
-  text-align: center;
-}
-p{
-    text-align:center;
-}
-h4{
-    text-align:center;
-}
-h1{
-    text-align: center;
-}
-/* ==========================
-rentals
-========================== */
-.p2{
-   text-align:left !important;
-}
-/*=====================
-tip jar winnners
-=====================*/
-.tips {
-  margin-bottom: 20px;
-}
-
-.tips-table {
-  display: table; 
-  width: 100%;
-border-collapse: collapse;
-}
-
-/* Table styling */
-.tips-table th,
-.tips-table td {
-  border: 1px solid #333;
-  padding: 10px;
-  text-align: left;
-}
-
-.tips-table th {
-  background-color: #ddd;
-}
-
-.tips-table td a {
-  color: blue;
-  text-decoration: none;
-}
-/* 1. Target the parent container to do the positioning */
-.button-container {
-  display: flex;
-  justify-content: center; /* Centers the button horizontally */
-  width: 100%;             /* Ensures the container spans full width */
-}
-
-/* 2. Your actual button styling remains independent */
-.button {
-  background-color: #FFC107;
-  color: blue;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-
-/* Hover state effect */
-.button:hover {
-  background-color: #E0A800; /* Darkens the blue when mouse hovers */
-}
-/* ==========================
-   8. MOBILE & RESPONSIVE
-   ========================== */
-@media screen and (max-width: 950px) {
-     nav {
-        flex-direction: row;          /* Switch from column to row */
-        justify-content: space-between; /* Pushes logo to left, menu/search to right */
-        align-items: center;
-        height: auto;
-        padding: 10px 20px;
-        font-size: 10px;
-        background: white;
-    }
-
-    .menu {
-        display: flex !important;
-        flex-direction: row;
-        flew-wrap: nowrap;
-        gap: 10px;               
-        margin-top: 0;
-        background-color: white;
-        border-top: none;
-        padding-bottom: 0;
-    }
-
-    .menu.active { display: flex !important; }*/
-
-    .menu li {
-        width: auto !important;
-        text-align: center;
-        padding: 0;
-        list-style: none !important;
-    }
-   .dropdown {
-        position: relative; /* Keeps the dropdown attached to the 'About' text block */
-    }
-   .dropdown-content {
-        position: absolute !important;   /* Floats sub-menu over content instead of moving menu items */
-        top: 100% !important;            /* Positions it cleanly beneath the header row */
-        left: 50% !important;
-        transform: translateX(-50%);     /* Centers the alignment on mobile screens */
-        display: none !important;        /* Keeps it hidden until clicked */
-        background-color: white !important;
-        min-width: 160px !important;
-        box-shadow: 0px 8px 16px rgba(0,0,0,0.15) !important;
-        border-radius: 8px !important;
-        z-index: 2500 !important;        /* Guarantees it hovers above text/maps */
-    }
-
-    .dropdown.open .dropdown-content { display: block !important; }
-
-
-    /* Location stack */
-    .location-content {
-        flex-direction: column !important;
-        text-align: center;
-    }
-
-    .location-text { text-align: center; margin-bottom: 30px; }
-}
-
-
-/* Sideways phone */
-@media screen and (orientation: landscape) and (max-height: 500px) {
-    .intro { padding: 20px; min-height: auto; }
-    .logo1 { width: 80px !important; }
-}
-/*thanks button*/
-.button {
-  /*display: flex;*/
-  justify-content: center;
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
+    background-color:
