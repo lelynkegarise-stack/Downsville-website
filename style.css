@@ -359,8 +359,8 @@ border-collapse: collapse;
 
 /* 2. Your actual button styling remains independent */
 .button {
-  background-color: #007BFF;
-  color: white;
+  background-color: #FFFFE0;
+  color: blue;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
