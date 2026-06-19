@@ -352,14 +352,14 @@ h1 {
     display: flex;
     justify-content: center; 
     width: 100%;             
-    margin: 20px 0; /* Gives the container vertical space on the page */
+    margin: 20px 0;
 }
 
 /* The standalone action button styling (Vibrant Club Yellow) */
 .button {
     display: inline-block;
-    background-color: ##FFFF00; /* Rich gold/yellow */
-    color: #000080;            /* Deep navy blue text for excellent contrast */
+    background-color: ##FFFF00 !important;
+    color: #000080 !important;           
     font-weight: bold;
     text-decoration: none;
     border: none;
