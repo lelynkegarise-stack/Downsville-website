@@ -1,6 +1,10 @@
 /* ==========================
-   1. CORE RESET
+   1. CORE RESET & BOX MODEL FIX
    ========================== */
+*, *::before, *::after {
+    box-sizing: border-box; /* Crucial: includes padding in element width to prevent iPhone overflow */
+}
+
 html {
     -webkit-text-size-adjust: none !important;
     text-size-adjust: none !important;
@@ -125,7 +129,6 @@ nav {
     justify-content: center;
     min-height: 60vh;
     padding: 40px 20px;
-    box-sizing: border-box;
 }
 
 .intro h1 {
@@ -203,6 +206,7 @@ nav {
 form {
     max-width: 500px;
     margin: 20px auto;
+    padding: 0 15px; /* Keeps form elements from touching screen edges on mobile */
 }
 
 label {
@@ -333,8 +337,8 @@ h1 {
 
 .tips-table th,
 .tips-table td {
-    border: 1px solid #333;
-    padding: 10px;
+    border: 1px solid #333 !important;
+    padding: 10px !important;
     text-align: left;
 }
 
@@ -353,12 +357,13 @@ h1 {
     justify-content: center; 
     width: 100%;             
     margin: 20px 0;
+    padding: 0 15px;
 }
 
 /* The standalone action button styling (Vibrant Club Yellow) */
 .button {
     display: inline-block;
-    background-color: ##FFFF00 !important;
+    background-color: #FFFF00 !important; /* FIXED: Removed the double hashtag typo */
     color: #000080 !important;           
     font-weight: bold;
     text-decoration: none;
@@ -366,6 +371,8 @@ h1 {
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
+    max-width: 100%; /* Keeps large buttons from pushing past iPhone screen edges */
+    text-align: center;
     transition: background-color 0.2s ease;
 }
 
@@ -439,6 +446,25 @@ h1 {
     .location-text { 
         text-align: center; 
         margin-bottom: 30px; 
+    }
+
+    /* MOBILE LAYOUT & COLUMN STACKING FIXES */
+    .container {
+        flex-direction: column !important; /* Stacks left/right sections vertically on iPhone */
+        align-items: center;
+    }
+
+    .left, .right {
+        width: 100% !important; /* Allows stacked content to fill screen nicely */
+        margin-bottom: 20px;
+    }
+
+    /* Prevents oversized tables from stretching the viewport wide */
+    .tips-table, .month-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto; /* Adds a clean, touch-friendly swipe layout for wide rows */
+        -webkit-overflow-scrolling: touch;
     }
 }
 
