@@ -364,7 +364,7 @@ h1 {
 .button {
     display: inline-block;
     background-color: #FFFF00 !important; 
-    color: #FFFFFF !important;           
+    color: #000000 !important;           
     font-weight: bold;
     text-decoration: none;
     border: none;
